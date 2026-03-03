@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -98,6 +98,18 @@
             }
             50% {
                 box-shadow: 0 0 20px rgba(135, 206, 235, 0.6);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
             }
         }
 
@@ -365,6 +377,7 @@
         #contact {
             background: linear-gradient(135deg, #f0f9ff, #e1f5fe);
             text-align: center;
+            padding-bottom: 50px;
         }
 
         #contact h2 {
@@ -515,6 +528,187 @@
             transform: translateY(-3px) scale(1.05);
         }
 
+        /* Formulaire WhatsApp */
+        .whatsapp-form-section {
+            background: linear-gradient(135deg, #ffffff, #f8fdff);
+            padding: 60px 0;
+            border-top: 3px solid #87CEEB;
+            border-bottom: 3px solid #87CEEB;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .whatsapp-form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(37, 211, 102, 0.15);
+            border: 2px solid rgba(37, 211, 102, 0.1);
+            animation: scaleIn 0.8s ease-out;
+        }
+
+        .whatsapp-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .whatsapp-icon {
+            font-size: 3.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-header h3 {
+            font-size: 2rem;
+            color: #075E54;
+            font-weight: 600;
+        }
+
+        .whatsapp-header h3 span {
+            color: #25D366;
+        }
+
+        .whatsapp-subtitle {
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .whatsapp-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group label i {
+            font-size: 1.3rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f9f9f9;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #25D366;
+            box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.1);
+            background: white;
+        }
+
+        .form-group input:hover,
+        .form-group textarea:hover {
+            border-color: #25D366;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .send-whatsapp-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+            animation: borderGlow 3s infinite;
+        }
+
+        .send-whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .send-whatsapp-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(37, 211, 102, 0.3);
+        }
+
+        .send-whatsapp-btn:hover::before {
+            left: 100%;
+        }
+
+        .send-whatsapp-btn i {
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-info {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px dashed #25D366;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .whatsapp-info strong {
+            color: #075E54;
+        }
+
+        .whatsapp-number-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #075E54;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 10px;
+            border: 2px solid #25D366;
+            animation: pulse 3s infinite;
+        }
+
         /* Footer */
         footer {
             background: linear-gradient(135deg, #5F9EA0, #4682B4);
@@ -618,6 +812,24 @@
             .contact-card:hover {
                 transform: translateY(-10px);
             }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-form-container {
+                margin: 0 20px;
+                padding: 30px 20px;
+            }
+
+            .whatsapp-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .whatsapp-header h3 {
+                font-size: 1.6rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -631,6 +843,11 @@
 
             .contact-card {
                 padding: 1.5rem;
+            }
+
+            .send-whatsapp-btn {
+                padding: 15px 20px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -729,10 +946,126 @@
         <div class="wave-bg"></div>
     </section>
 
+    <!-- Formulaire WhatsApp direct -->
+    <section class="whatsapp-form-section">
+        <div class="container">
+            <div class="whatsapp-form-container">
+                <div class="whatsapp-header">
+                    <span class="whatsapp-icon">📱</span>
+                    <h3>WhatsApp <span>Direct</span></h3>
+                </div>
+                
+                <p class="whatsapp-subtitle">
+                    Envoyez-moi un message directement sur WhatsApp en remplissant ce formulaire
+                </p>
+
+                <div class="whatsapp-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>
+                                <span>👤</span> Votre nom
+                            </label>
+                            <input type="text" id="nom" placeholder="Ex: Jean Dupont" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <span>📞</span> Votre téléphone
+                            </label>
+                            <input type="tel" id="telephone" placeholder="Ex: 0341234567" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <span>✉️</span> Votre message
+                        </label>
+                        <textarea id="message" placeholder="Bonjour Matthieu, je souhaite vous contacter pour...">Bonjour Matthieu, je souhaite vous contacter pour un projet.</textarea>
+                    </div>
+
+                    <button class="send-whatsapp-btn" id="sendWhatsAppBtn">
+                        <span>📤</span>
+                        Envoyer sur WhatsApp
+                        <span>➡️</span>
+                    </button>
+
+                    <div class="whatsapp-info">
+                        <p>📱 <strong>Mon numéro WhatsApp :</strong> +261 38 62 876 80</p>
+                        <p>⏱️ Réponse généralement sous <strong>24h</strong></p>
+                        <div class="whatsapp-number-badge">
+                            ✅ Disponible sur WhatsApp
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2026 RATIANARIVO Mirindra Matthieu. Tous droits réservés.</p>
         </div>
     </footer>
+
+    <script>
+        // Fonction pour envoyer le message WhatsApp
+        document.getElementById('sendWhatsAppBtn').addEventListener('click', function() {
+            // Récupérer les valeurs du formulaire
+            var nom = document.getElementById('nom').value.trim();
+            var telephone = document.getElementById('telephone').value.trim();
+            var message = document.getElementById('message').value.trim();
+            
+            // Vérifier si les champs obligatoires sont remplis
+            if (nom === '') {
+                alert('Veuillez entrer votre nom');
+                return;
+            }
+            
+            if (message === '') {
+                alert('Veuillez entrer votre message');
+                return;
+            }
+            
+            // Numéro WhatsApp (format international sans +)
+            var whatsappNumber = '261386287680';
+            
+            // Construire le message avec les informations
+            var texteMessage = `*Nouveau message depuis le portfolio*%0A%0A`;
+            texteMessage += `👤 *Nom :* ${nom}%0A`;
+            
+            if (telephone !== '') {
+                texteMessage += `📞 *Téléphone :* ${telephone}%0A`;
+            }
+            
+            texteMessage += `%0A📝 *Message :*%0A${message}%0A%0A`;
+            texteMessage += `_Message envoyé via le formulaire WhatsApp direct_`;
+            
+            // Encoder le message pour l'URL
+            var url = `https://wa.me/${whatsappNumber}?text=${texteMessage}`;
+            
+            // Ouvrir WhatsApp dans un nouvel onglet
+            window.open(url, '_blank');
+        });
+
+        // Animation supplémentaire pour le bouton
+        var whatsappBtn = document.getElementById('sendWhatsAppBtn');
+        
+        whatsappBtn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.02)';
+        });
+        
+        whatsappBtn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+
+        // Optionnel : Remplir automatiquement le message avec un texte par défaut
+        document.addEventListener('DOMContentLoaded', function() {
+            // Vous pouvez modifier le message par défaut si nécessaire
+            var messageField = document.getElementById('message');
+            if (messageField.value === '') {
+                messageField.value = 'Bonjour Matthieu, je souhaite vous contacter pour un projet.';
+            }
+        });
+    </script>
 </body>
 </html>
