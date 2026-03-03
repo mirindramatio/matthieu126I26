@@ -28,7 +28,7 @@
             z-index: 10;
         }
 
-        /* ===== THÈME MUICHIRO TOKITO - AURA SPECTRALE ===== */
+        /* ===== THÈME NINJA - KATANAS ET SHURIKENS ===== */
         @keyframes aura-pulse {
             0%, 100% { opacity: 0.15; filter: blur(30px); transform: scale(1); }
             50% { opacity: 0.3; filter: blur(45px); transform: scale(1.1); }
@@ -57,29 +57,35 @@
             100% { transform: rotate(360deg) scale(1); opacity: 0.1; }
         }
 
-        @keyframes feather-dance {
-            0% { transform: translateY(0) rotate(0deg) scale(1); }
-            25% { transform: translateY(-20px) rotate(5deg) scale(1.05); }
-            50% { transform: translateY(5px) rotate(-5deg) scale(0.95); }
-            75% { transform: translateY(-10px) rotate(3deg) scale(1.02); }
-            100% { transform: translateY(0) rotate(0deg) scale(1); }
+        @keyframes katana-swing {
+            0% { transform: translateY(0) rotate(-10deg); opacity: 0.2; }
+            25% { transform: translateY(-15px) rotate(15deg); opacity: 0.3; }
+            50% { transform: translateY(5px) rotate(5deg); opacity: 0.25; }
+            75% { transform: translateY(-10px) rotate(-5deg); opacity: 0.3; }
+            100% { transform: translateY(0) rotate(-10deg); opacity: 0.2; }
         }
 
-        @keyframes mist-weave {
-            0% { transform: translateX(0) translateY(0) scale(1); }
-            25% { transform: translateX(30px) translateY(-15px) scale(1.1); }
-            50% { transform: translateX(-20px) translateY(20px) scale(0.95); }
-            75% { transform: translateX(15px) translateY(-10px) scale(1.05); }
-            100% { transform: translateX(0) translateY(0) scale(1); }
+        @keyframes shuriken-spin {
+            0% { transform: rotate(0deg) scale(1); opacity: 0.2; }
+            50% { transform: rotate(180deg) scale(1.1); opacity: 0.3; }
+            100% { transform: rotate(360deg) scale(1); opacity: 0.2; }
         }
 
-        @keyframes particle-dance {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
-            20% { transform: translate(15px, -10px) scale(1.2); opacity: 0.4; }
-            40% { transform: translate(-10px, 15px) scale(0.9); opacity: 0.3; }
-            60% { transform: translate(20px, 5px) scale(1.1); opacity: 0.4; }
-            80% { transform: translate(-15px, -10px) scale(1.2); opacity: 0.3; }
-            100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+        @keyframes shuriken-float {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(90deg); }
+            50% { transform: translateY(5px) rotate(180deg); }
+            75% { transform: translateY(-5px) rotate(270deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        @keyframes weapon-dance {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(15px, -10px) rotate(45deg); }
+            40% { transform: translate(-10px, 15px) rotate(90deg); }
+            60% { transform: translate(20px, 5px) rotate(135deg); }
+            80% { transform: translate(-15px, -10px) rotate(180deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
         }
 
         @keyframes light-ray {
@@ -204,6 +210,14 @@
             animation: mist-weave 28s ease-in-out infinite;
         }
 
+        @keyframes mist-weave {
+            0% { transform: translateX(0) translateY(0) scale(1); }
+            25% { transform: translateX(30px) translateY(-15px) scale(1.1); }
+            50% { transform: translateX(-20px) translateY(20px) scale(0.95); }
+            75% { transform: translateX(15px) translateY(-10px) scale(1.05); }
+            100% { transform: translateX(0) translateY(0) scale(1); }
+        }
+
         .aura-line {
             position: fixed;
             width: 2px;
@@ -265,57 +279,114 @@
             animation-delay: 15s;
         }
 
-        /* Plumes lumineuses */
-        .aura-feather {
+        /* ===== ARMES NINJA (KATANAS ET SHURIKENS) ===== */
+        .ninja-weapon {
             position: fixed;
-            color: rgba(172, 148, 255, 0.25);
-            font-size: 2.5rem;
+            font-size: 2rem;
             pointer-events: none;
             z-index: 0;
-            filter: drop-shadow(0 0 20px rgba(123, 216, 255, 0.2));
-            animation: feather-dance 25s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(172, 148, 255, 0.3));
+            opacity: 0.3;
         }
 
-        .aura-feather-1 {
-            top: 10%;
-            left: 5%;
+        /* Katanas */
+        .katana-1 {
+            top: 15%;
+            left: 8%;
             transform: rotate(-15deg);
-            animation-delay: 0s;
+            animation: katana-swing 18s ease-in-out infinite;
         }
 
-        .aura-feather-2 {
+        .katana-2 {
             top: 75%;
-            right: 8%;
-            transform: rotate(20deg);
-            animation-delay: 5s;
+            right: 10%;
+            transform: rotate(160deg);
+            animation: katana-swing 22s ease-in-out infinite reverse;
         }
 
-        .aura-feather-3 {
+        .katana-3 {
             bottom: 20%;
-            left: 12%;
-            transform: rotate(30deg);
-            animation-delay: 10s;
+            left: 15%;
+            transform: rotate(45deg);
+            animation: katana-swing 20s ease-in-out infinite;
         }
 
-        .aura-feather-4 {
+        .katana-4 {
             top: 45%;
             right: 20%;
-            transform: rotate(-25deg);
-            animation-delay: 15s;
+            transform: rotate(-120deg);
+            animation: katana-swing 24s ease-in-out infinite reverse;
         }
 
-        .aura-feather-5 {
+        .katana-5 {
             bottom: 35%;
             right: 30%;
-            transform: rotate(10deg);
-            animation-delay: 20s;
+            transform: rotate(90deg);
+            animation: katana-swing 26s ease-in-out infinite;
         }
 
-        .aura-feather-6 {
+        .katana-6 {
             top: 60%;
             left: 25%;
-            transform: rotate(45deg);
-            animation-delay: 25s;
+            transform: rotate(-45deg);
+            animation: katana-swing 28s ease-in-out infinite reverse;
+        }
+
+        /* Shurikens */
+        .shuriken-1 {
+            top: 10%;
+            right: 15%;
+            font-size: 1.8rem;
+            animation: shuriken-spin 12s linear infinite;
+        }
+
+        .shuriken-2 {
+            bottom: 15%;
+            left: 20%;
+            font-size: 1.8rem;
+            animation: shuriken-spin 15s linear infinite reverse;
+        }
+
+        .shuriken-3 {
+            top: 30%;
+            left: 30%;
+            font-size: 1.8rem;
+            animation: shuriken-float 14s ease-in-out infinite;
+        }
+
+        .shuriken-4 {
+            bottom: 40%;
+            right: 15%;
+            font-size: 1.8rem;
+            animation: shuriken-spin 18s linear infinite;
+        }
+
+        .shuriken-5 {
+            top: 70%;
+            right: 35%;
+            font-size: 1.8rem;
+            animation: shuriken-float 16s ease-in-out infinite reverse;
+        }
+
+        .shuriken-6 {
+            top: 85%;
+            left: 10%;
+            font-size: 1.8rem;
+            animation: shuriken-spin 20s linear infinite reverse;
+        }
+
+        .shuriken-7 {
+            bottom: 25%;
+            right: 40%;
+            font-size: 1.8rem;
+            animation: shuriken-float 22s ease-in-out infinite;
+        }
+
+        .shuriken-8 {
+            top: 40%;
+            left: 45%;
+            font-size: 1.8rem;
+            animation: shuriken-spin 24s linear infinite;
         }
 
         /* Particules d'aura */
@@ -328,7 +399,7 @@
             filter: blur(3px);
             pointer-events: none;
             z-index: 0;
-            animation: particle-dance 35s ease-in-out infinite;
+            animation: weapon-dance 35s ease-in-out infinite;
         }
 
         .aura-particle-1 { top: 8%; left: 8%; }
@@ -617,10 +688,10 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 5rem;
-            align-items: start; /* Aligné en haut au lieu de center */
+            align-items: start;
             position: relative;
             z-index: 10;
-            padding-top: 2rem; /* Ajout d'un padding pour remonter la photo */
+            padding-top: 2rem;
         }
 
         /* Texte à gauche */
@@ -761,35 +832,34 @@
             opacity: 1;
         }
 
-        /* Photo à droite - Format rectangulaire comme avant */
+        /* Photo à droite - Format rectangulaire et sans filtre (originale) */
         .apropos-image {
             position: relative;
             display: flex;
             justify-content: center;
             animation: fadeInRight 1.3s ease-out;
             grid-column: 2;
-            margin-top: -20px; /* Remonte la photo */
+            margin-top: -20px;
         }
 
         .image-frame {
             position: relative;
             width: 100%;
-            max-width: 400px; /* Largeur fixe pour format rectangulaire */
-            border-radius: 15px; /* Coins arrondis normaux, pas de forme bizarre */
+            max-width: 400px;
+            border-radius: 15px;
             padding: 8px;
             background: rgba(255,255,255,0.25);
             backdrop-filter: blur(10px);
             box-shadow: 0 40px 60px -25px rgba(0,0,0,0.3);
             animation: aura-float 10s ease-in-out infinite;
             z-index: 2;
-            aspect-ratio: auto; /* Pas de ratio forcé, laisse l'image garder ses proportions */
         }
 
-        /* Cercles d'aura autour de la photo - adaptés au rectangle */
+        /* Cercles d'aura autour de la photo */
         .aura-circle {
             position: absolute;
             border: 1px solid rgba(255,255,255,0.25);
-            border-radius: 15px; /* Même forme que l'image */
+            border-radius: 15px;
             animation: aura-spiral 25s linear infinite;
         }
 
@@ -856,11 +926,11 @@
 
         .apropos-image img {
             width: 100%;
-            height: auto; /* Hauteur automatique pour garder les proportions */
-            border-radius: 10px; /* Coins légèrement arrondis */
+            height: auto;
+            border-radius: 10px;
             transition: all 0.6s;
             display: block;
-            filter: brightness(1.1) contrast(1.05) saturate(1.1); /* Plus clair */
+            /* Aucun filtre - image originale */
             opacity: 1;
             position: relative;
             z-index: 3;
@@ -870,7 +940,7 @@
 
         .apropos-image img:hover {
             transform: scale(1.03);
-            filter: brightness(1.15) contrast(1.08); /* Encore plus clair au survol */
+            /* Pas de filtre au survol non plus */
             box-shadow: 0 0 40px rgba(255,255,255,0.3);
         }
 
@@ -974,7 +1044,7 @@
         }
 
         .contact-icon {
-            font-size: 2.8rem; /* Plus petit */
+            font-size: 2.8rem;
             margin-bottom: 1.2rem;
             display: inline-block;
             opacity: 0.9;
@@ -993,19 +1063,19 @@
         .contact-card p {
             color: #b0c4de;
             margin-bottom: 1.5rem;
-            font-size: 0.95rem; /* Plus petit */
+            font-size: 0.95rem;
             font-weight: 300;
         }
 
         .contact-link {
             display: inline-block;
-            padding: 10px 28px; /* Plus petit */
+            padding: 10px 28px;
             background: rgba(123,216,255,0.06);
             color: #b0c4de;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 300;
-            font-size: 0.9rem; /* Plus petit */
+            font-size: 0.9rem;
             border: 1px solid rgba(123,216,255,0.2);
             transition: all 0.5s;
             position: relative;
@@ -1046,7 +1116,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            padding: 12px 32px; /* Plus petit */
+            padding: 12px 32px;
             background: rgba(20,25,40,0.4);
             color: #b0c4de;
             text-decoration: none;
@@ -1058,7 +1128,7 @@
             position: relative;
             overflow: hidden;
             animation: fadeInUp 1.5s ease-out 0.8s both;
-            font-size: 0.95rem; /* Plus petit */
+            font-size: 0.95rem;
         }
 
         .social-link::before {
@@ -1417,6 +1487,12 @@
             .hero h1 {
                 font-size: 3rem;
             }
+
+            .katana-1, .katana-2, .katana-3, .katana-4, .katana-5, .katana-6,
+            .shuriken-1, .shuriken-2, .shuriken-3, .shuriken-4, .shuriken-5, 
+            .shuriken-6, .shuriken-7, .shuriken-8 {
+                opacity: 0.15;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1502,13 +1578,23 @@
     <div class="aura-cloud aura-cloud-3"></div>
     <div class="aura-cloud aura-cloud-4"></div>
     
-    <!-- Plumes d'aura -->
-    <div class="aura-feather aura-feather-1">🕊️</div>
-    <div class="aura-feather aura-feather-2">🪶</div>
-    <div class="aura-feather aura-feather-3">🍃</div>
-    <div class="aura-feather aura-feather-4">✨</div>
-    <div class="aura-feather aura-feather-5">💫</div>
-    <div class="aura-feather aura-feather-6">🌟</div>
+    <!-- KATANAS (remplacement des plumes) -->
+    <div class="ninja-weapon katana-1">⚔️</div>
+    <div class="ninja-weapon katana-2">⚔️</div>
+    <div class="ninja-weapon katana-3">⚔️</div>
+    <div class="ninja-weapon katana-4">⚔️</div>
+    <div class="ninja-weapon katana-5">⚔️</div>
+    <div class="ninja-weapon katana-6">⚔️</div>
+    
+    <!-- SHURIKENS (nouveaux) -->
+    <div class="ninja-weapon shuriken-1">✴️</div>
+    <div class="ninja-weapon shuriken-2">✴️</div>
+    <div class="ninja-weapon shuriken-3">✴️</div>
+    <div class="ninja-weapon shuriken-4">✴️</div>
+    <div class="ninja-weapon shuriken-5">✴️</div>
+    <div class="ninja-weapon shuriken-6">✴️</div>
+    <div class="ninja-weapon shuriken-7">✴️</div>
+    <div class="ninja-weapon shuriken-8">✴️</div>
     
     <!-- Particules d'aura -->
     <div class="aura-particle aura-particle-1"></div>
@@ -1562,7 +1648,7 @@
                     <span class="skill">Responsive</span>
                 </div>
             </div>
-            <!-- Photo à droite - Format rectangulaire et plus claire -->
+            <!-- Photo à droite - Format rectangulaire et sans filtre -->
             <div class="apropos-image">
                 <div class="image-frame">
                     <div class="aura-circle aura-circle-1"></div>
@@ -1764,7 +1850,7 @@
         // Animation parallaxe pour les éléments d'aura
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
-            const auraElements = document.querySelectorAll('.aura, .aura-cloud, .aura-feather');
+            const auraElements = document.querySelectorAll('.aura, .aura-cloud, .ninja-weapon');
             auraElements.forEach((el, index) => {
                 const speed = 0.05 + (index * 0.01);
                 el.style.transform = `translateY(${scrolled * speed}px)`;
