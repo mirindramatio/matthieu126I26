@@ -873,7 +873,6 @@
         .skill:nth-child(1) { animation-delay: 0.1s; }
         .skill:nth-child(2) { animation-delay: 0.2s; }
         .skill:nth-child(3) { animation-delay: 0.3s; }
-        .skill:nth-child(4) { animation-delay: 0.4s; }
 
         .skill::before {
             content: '';
@@ -1620,10 +1619,9 @@
                 <p>Je reste à votre disposition pour un entretien et vous remercie de l'attention portée à ma candidature.</p>
                 <p>"La technologie construit le système, l'expérience construit la relation."</p>
                 <div class="skills">
-                    <span class="skill">HTML5</span>
-                    <span class="skill">CSS3</span>
+                    <span class="skill">HTML</span>
+                    <span class="skill">CSS</span>
                     <span class="skill">JavaScript</span>
-                    <span class="skill">Responsive</span>
                 </div>
             </div>
             <div class="apropos-image">
