@@ -1,25 +1,43 @@
-<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Portfolio - RATIANARIVO Mirindra Matthieu</title>
     <style>
+        /* ===== RESET & VARIABLES ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-light: #7bd8ff;
+            --primary-dark: #ac94ff;
+            --bg-dark: #030712;
+            --text-light: #e0f2fe;
+            --text-muted: #b0c4de;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
-            color: #e0f2fe;
-            background: linear-gradient(135deg, #030712 0%, #0a0f1a 50%, #0f1a2f 100%);
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0a0f1a 50%, #0f1a2f 100%);
             min-height: 100vh;
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
@@ -27,284 +45,92 @@
             z-index: 10;
         }
 
-        /* ===== ANIMATIONS ULTRA-FLUIDES ===== */
-        @keyframes float-particle {
-            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            25% { transform: translate(15px, -20px) rotate(5deg) scale(1.1); }
-            50% { transform: translate(-10px, 15px) rotate(-5deg) scale(0.95); }
-            75% { transform: translate(20px, -10px) rotate(3deg) scale(1.05); }
-            100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        /* ===== ANIMATIONS CONSERVÉES ===== */
+        @keyframes aura-pulse {
+            0%, 100% { opacity: 0.15; filter: blur(30px); transform: scale(1); }
+            50% { opacity: 0.3; filter: blur(45px); transform: scale(1.1); }
         }
 
-        @keyframes glow-pulse {
-            0%, 100% { filter: drop-shadow(0 0 10px rgba(123, 216, 255, 0.3)) brightness(1); }
-            50% { filter: drop-shadow(0 0 30px rgba(172, 148, 255, 0.6)) brightness(1.1); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes wave-motion {
-            0% { transform: translateX(0) translateY(0) rotate(0deg); }
-            33% { transform: translateX(20px) translateY(-15px) rotate(2deg); }
-            66% { transform: translateX(-15px) translateY(10px) rotate(-2deg); }
-            100% { transform: translateX(0) translateY(0) rotate(0deg); }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes spin-smooth {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.05); }
-            100% { transform: rotate(360deg) scale(1); }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
-        @keyframes slide-float {
-            0% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-15px) translateX(10px); }
-            50% { transform: translateY(5px) translateX(-5px); }
-            75% { transform: translateY(-8px) translateX(8px); }
-            100% { transform: translateY(0) translateX(0); }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes rotate-3d {
-            0% { transform: perspective(800px) rotateY(0deg) rotateX(0deg); }
-            50% { transform: perspective(800px) rotateY(180deg) rotateX(10deg); }
-            100% { transform: perspective(800px) rotateY(360deg) rotateX(0deg); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        @keyframes morph {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        @keyframes glow-soft {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(123, 216, 255, 0.2)); }
+            50% { filter: drop-shadow(0 0 20px rgba(172, 148, 255, 0.4)); }
         }
 
-        @keyframes liquid {
-            0% { transform: scale(1) rotate(0deg); filter: blur(40px); }
-            50% { transform: scale(1.2) rotate(5deg); filter: blur(50px); }
-            100% { transform: scale(1) rotate(0deg); filter: blur(40px); }
-        }
-
-        @keyframes shine {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        @keyframes flicker {
-            0%, 100% { opacity: 0.2; }
-            25% { opacity: 0.4; }
-            50% { opacity: 0.1; }
-            75% { opacity: 0.3; }
-        }
-
-        @keyframes orbit {
-            0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
-        }
-
-        @keyframes aura-wave {
-            0% { transform: scale(1); opacity: 0.2; filter: blur(30px); }
-            50% { transform: scale(1.5); opacity: 0.4; filter: blur(50px); }
-            100% { transform: scale(1); opacity: 0.2; filter: blur(30px); }
-        }
-
-        /* ===== ÉLÉMENTS D'AURA AMÉLIORÉS ===== */
+        /* ===== ÉLÉMENTS D'AURA OPTIMISÉS ===== */
         .aura {
             position: fixed;
             pointer-events: none;
             z-index: 0;
             border-radius: 50%;
             filter: blur(60px);
-            animation: liquid 15s ease-in-out infinite, aura-wave 20s ease-in-out infinite;
+            will-change: transform, opacity;
         }
 
         .aura-1 {
             top: 5%;
             left: 5%;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(123, 216, 255, 0.15) 0%, transparent 70%);
-            animation-delay: 0s;
+            width: min(700px, 80vw);
+            height: min(700px, 80vw);
+            background: radial-gradient(circle, rgba(123, 216, 255, 0.12) 0%, transparent 70%);
+            animation: aura-pulse 15s ease-in-out infinite;
         }
 
         .aura-2 {
             bottom: 5%;
             right: 5%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(172, 148, 255, 0.12) 0%, transparent 70%);
-            animation-delay: 3s;
-        }
-
-        .aura-3 {
-            top: 40%;
-            right: 15%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(123, 216, 255, 0.1) 0%, transparent 70%);
-            animation-delay: 6s;
-        }
-
-        .aura-4 {
-            bottom: 30%;
-            left: 10%;
-            width: 650px;
-            height: 650px;
+            width: min(800px, 90vw);
+            height: min(800px, 90vw);
             background: radial-gradient(circle, rgba(172, 148, 255, 0.1) 0%, transparent 70%);
-            animation-delay: 9s;
+            animation: aura-pulse 18s ease-in-out infinite reverse;
         }
 
-        .aura-5 {
-            top: 60%;
-            left: 20%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 70%);
-            animation-delay: 12s;
+        /* Version mobile avec moins d'éléments */
+        @media (max-width: 768px) {
+            .aura-3, .aura-4, .aura-5, .aura-6,
+            .aura-line-3, .aura-line-4,
+            .aura-cloud-3, .aura-cloud-4,
+            .katana-4, .katana-5, .katana-6,
+            .shuriken-5, .shuriken-6, .shuriken-7, .shuriken-8 {
+                display: none;
+            }
+            
+            .aura-particle {
+                width: 3px;
+                height: 3px;
+            }
         }
 
-        .aura-6 {
-            top: 20%;
-            right: 25%;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(123, 216, 255, 0.08) 0%, transparent 70%);
-            animation-delay: 15s;
-        }
-
-        .aura-line {
-            position: fixed;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, rgba(123,216,255,0.2), rgba(172,148,255,0.2), transparent);
-            filter: blur(8px);
-            pointer-events: none;
-            z-index: 0;
-            animation: slide-float 20s ease-in-out infinite, wave-motion 25s ease-in-out infinite;
-        }
-
-        .aura-line-1 { left: 15%; animation-delay: 0s; }
-        .aura-line-2 { right: 25%; animation-delay: 2s; }
-        .aura-line-3 { left: 45%; animation-delay: 4s; }
-        .aura-line-4 { right: 35%; animation-delay: 6s; }
-
-        .aura-cloud {
-            position: fixed;
-            background: rgba(255,255,255,0.02);
-            border-radius: 1000px;
-            filter: blur(50px);
-            pointer-events: none;
-            z-index: 0;
-            animation: float-particle 40s ease-in-out infinite, flicker 15s ease-in-out infinite;
-        }
-
-        .aura-cloud-1 {
-            top: 10%;
-            right: 5%;
-            width: 600px;
-            height: 180px;
-            box-shadow: 80px 40px 0 0 rgba(123,216,255,0.03);
-        }
-
-        .aura-cloud-2 {
-            bottom: 15%;
-            left: 5%;
-            width: 700px;
-            height: 200px;
-            box-shadow: 100px 50px 0 0 rgba(172,148,255,0.03);
-            animation-delay: 10s;
-        }
-
-        .aura-cloud-3 {
-            top: 40%;
-            right: 15%;
-            width: 500px;
-            height: 150px;
-            box-shadow: 70px 35px 0 0 rgba(255,255,255,0.03);
-            animation-delay: 20s;
-        }
-
-        .aura-cloud-4 {
-            top: 70%;
-            left: 20%;
-            width: 550px;
-            height: 160px;
-            box-shadow: 75px 38px 0 0 rgba(123,216,255,0.03);
-            animation-delay: 30s;
-        }
-
-        .ninja-weapon {
-            position: fixed;
-            font-size: 2rem;
-            pointer-events: none;
-            z-index: 0;
-            filter: drop-shadow(0 0 15px rgba(172, 148, 255, 0.3));
-            opacity: 0.25;
-            animation: glow-pulse 5s ease-in-out infinite, float-particle 30s ease-in-out infinite;
-        }
-
-        .katana-1 { top: 15%; left: 8%; transform: rotate(-15deg); animation-delay: 0s; }
-        .katana-2 { top: 75%; right: 10%; transform: rotate(160deg); animation-delay: 2s; }
-        .katana-3 { bottom: 20%; left: 15%; transform: rotate(45deg); animation-delay: 4s; }
-        .katana-4 { top: 45%; right: 20%; transform: rotate(-120deg); animation-delay: 6s; }
-        .katana-5 { bottom: 35%; right: 30%; transform: rotate(90deg); animation-delay: 8s; }
-        .katana-6 { top: 60%; left: 25%; transform: rotate(-45deg); animation-delay: 10s; }
-
-        .shuriken-1 { top: 10%; right: 15%; font-size: 1.8rem; animation: spin-smooth 12s linear infinite, float-particle 20s ease-in-out infinite; }
-        .shuriken-2 { bottom: 15%; left: 20%; font-size: 1.8rem; animation: spin-smooth 15s linear infinite reverse, float-particle 22s ease-in-out infinite; }
-        .shuriken-3 { top: 30%; left: 30%; font-size: 1.8rem; animation: spin-smooth 18s linear infinite, slide-float 25s ease-in-out infinite; }
-        .shuriken-4 { bottom: 40%; right: 15%; font-size: 1.8rem; animation: spin-smooth 20s linear infinite, breathe 8s ease-in-out infinite; }
-        .shuriken-5 { top: 70%; right: 35%; font-size: 1.8rem; animation: spin-smooth 22s linear infinite reverse, wave-motion 28s ease-in-out infinite; }
-        .shuriken-6 { top: 85%; left: 10%; font-size: 1.8rem; animation: spin-smooth 24s linear infinite, float-particle 26s ease-in-out infinite; }
-        .shuriken-7 { bottom: 25%; right: 40%; font-size: 1.8rem; animation: spin-smooth 26s linear infinite, glow-pulse 6s ease-in-out infinite; }
-        .shuriken-8 { top: 40%; left: 45%; font-size: 1.8rem; animation: spin-smooth 28s linear infinite reverse, breathe 10s ease-in-out infinite; }
-
-        .aura-particle {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: rgba(172, 148, 255, 0.4);
-            border-radius: 50%;
-            filter: blur(3px);
-            pointer-events: none;
-            z-index: 0;
-            animation: float-particle 35s ease-in-out infinite, glow-pulse 8s ease-in-out infinite;
-        }
-
-        .aura-particle-1 { top: 8%; left: 8%; }
-        .aura-particle-2 { top: 18%; left: 38%; animation-delay: 2s; }
-        .aura-particle-3 { top: 28%; left: 68%; animation-delay: 4s; }
-        .aura-particle-4 { top: 38%; left: 18%; animation-delay: 6s; }
-        .aura-particle-5 { top: 48%; left: 48%; animation-delay: 8s; }
-        .aura-particle-6 { top: 58%; left: 78%; animation-delay: 10s; }
-        .aura-particle-7 { top: 68%; left: 28%; animation-delay: 12s; }
-        .aura-particle-8 { top: 78%; left: 58%; animation-delay: 14s; }
-        .aura-particle-9 { top: 13%; left: 83%; animation-delay: 16s; }
-        .aura-particle-10 { top: 63%; left: 3%; animation-delay: 18s; }
-        .aura-particle-11 { top: 23%; left: 93%; animation-delay: 20s; }
-        .aura-particle-12 { top: 73%; left: 13%; animation-delay: 22s; }
-
-        .aura-ray {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: conic-gradient(
-                from 0deg,
-                transparent,
-                rgba(123,216,255,0.06) 45deg,
-                transparent 90deg,
-                rgba(172,148,255,0.06) 135deg,
-                transparent 180deg,
-                rgba(123,216,255,0.06) 225deg,
-                transparent 270deg,
-                rgba(172,148,255,0.06) 315deg,
-                transparent 360deg
-            );
-            pointer-events: none;
-            z-index: 0;
-            animation: rotate-3d 60s linear infinite, breathe 15s ease-in-out infinite;
-        }
-
+        /* ===== HEADER RESPONSIVE ===== */
         header {
             background: rgba(3, 7, 18, 0.6);
             backdrop-filter: blur(20px);
@@ -314,156 +140,79 @@
             width: 100%;
             top: 0;
             z-index: 100;
-            animation: slide-float 20s ease-in-out infinite;
+            animation: fadeInDown 1.2s ease-out;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 5%;
+            padding: 1rem 5%;
             max-width: 1400px;
             margin: 0 auto;
+            flex-wrap: wrap;
         }
 
         .logo {
-            font-size: 1.6rem;
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
             font-weight: 400;
             color: #ffffff;
             text-decoration: none;
             letter-spacing: 2px;
-            transition: all 0.4s;
-            position: relative;
             text-shadow: 0 0 20px rgba(123,216,255,0.4);
-            animation: glow-pulse 5s ease-in-out infinite, breathe 6s ease-in-out infinite;
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            right: -8px;
-            bottom: -8px;
-            background: radial-gradient(circle, rgba(123,216,255,0.15) 0%, transparent 70%);
-            filter: blur(15px);
-            animation: liquid 8s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, #7bd8ff, #ac94ff, transparent);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.5s;
-        }
-
-        .logo:hover {
-            transform: translateY(-3px) scale(1.05);
-            text-shadow: 0 0 30px rgba(172,148,255,0.6);
-        }
-
-        .logo:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
+            animation: glow-soft 5s ease-in-out infinite, float 6s ease-in-out infinite;
+            white-space: nowrap;
         }
 
         .nav-links {
             display: flex;
-            gap: 4rem;
+            gap: clamp(1rem, 4vw, 4rem);
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #b0c4de;
+            color: var(--text-muted);
             font-weight: 300;
-            font-size: 1.1rem;
-            transition: all 0.4s;
-            position: relative;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            transition: var(--transition);
             letter-spacing: 1.5px;
-            animation: breathe 8s ease-in-out infinite;
-            animation-delay: calc(0.2s * var(--i));
+            white-space: nowrap;
         }
 
-        .nav-links a:nth-child(1) { --i: 1; }
-        .nav-links a:nth-child(2) { --i: 2; }
-        .nav-links a:nth-child(3) { --i: 3; }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
+        /* ===== SECTIONS RESPONSIVES ===== */
+        section {
             width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, #7bd8ff, #ac94ff);
-            transform: scaleX(0);
-            transition: transform 0.4s;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: radial-gradient(circle, rgba(123,216,255,0.15) 0%, transparent 70%);
-            filter: blur(10px);
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: -1;
-        }
-
-        .nav-links a:hover {
-            color: #ffffff;
-            text-shadow: 0 0 15px rgba(123,216,255,0.4);
-            transform: translateY(-3px);
-        }
-
-        .nav-links a:hover::before {
-            transform: scaleX(1);
-        }
-
-        .nav-links a:hover::after {
-            opacity: 1;
-        }
-
-        #accueil {
             min-height: 100vh;
             display: flex;
             align-items: center;
+            padding: 80px 0 60px;
+        }
+
+        #accueil {
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding-top: 100px;
         }
 
         .hero {
+            width: 100%;
             max-width: 900px;
             margin: 0 auto;
-            animation: breathe 10s ease-in-out infinite;
+            animation: zoomIn 1.5s ease-out;
         }
 
         .hero h1 {
-            font-size: 4.2rem;
+            font-size: clamp(2rem, 8vw, 4.2rem);
             font-weight: 300;
             margin-bottom: 1.5rem;
             color: #ffffff;
             line-height: 1.2;
             text-shadow: 0 0 30px rgba(123,216,255,0.4);
-            animation: glow-pulse 6s ease-in-out infinite, slide-float 12s ease-in-out infinite;
-            letter-spacing: 3px;
+            letter-spacing: clamp(1px, 2vw, 3px);
         }
 
         .hero p {
-            font-size: 1.4rem;
-            color: #b0c4de;
+            font-size: clamp(1rem, 4vw, 1.4rem);
+            color: var(--text-muted);
             margin-bottom: 3rem;
             max-width: 700px;
             margin-left: auto;
@@ -471,496 +220,239 @@
             font-weight: 300;
             letter-spacing: 1.5px;
             line-height: 1.9;
-            animation: breathe 8s ease-in-out infinite, glow-pulse 10s ease-in-out infinite;
+            padding: 0 15px;
         }
 
         .btn {
             display: inline-block;
-            padding: 16px 50px;
+            padding: clamp(12px, 3vw, 16px) clamp(30px, 8vw, 50px);
             background: rgba(123,216,255,0.04);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 300;
             letter-spacing: 2.5px;
-            transition: all 0.5s;
             border: 1px solid rgba(123,216,255,0.25);
             backdrop-filter: blur(10px);
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
-            animation: glow-pulse 5s ease-in-out infinite, breathe 6s ease-in-out infinite;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(123,216,255,0.15) 0%, transparent 70%);
-            animation: spin-smooth 20s linear infinite;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-            transition: left 0.8s;
-            animation: shine 5s linear infinite;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            transition: var(--transition);
+            white-space: nowrap;
         }
 
         .btn:hover {
             background: rgba(172,148,255,0.08);
             border-color: rgba(172,148,255,0.4);
             transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 25px 35px -15px rgba(0,0,0,0.6);
         }
 
-        .btn:hover::before {
-            opacity: 1;
-        }
-
-        .btn:hover::after {
-            left: 100%;
-        }
-
+        /* ===== SECTION À PROPOS RESPONSIVE ===== */
         #apropos {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
             background: linear-gradient(135deg, 
-                #e0f2fe 0%,
-                #bae6fd 15%,
-                #7dd3fc 30%,
-                #38bdf8 45%,
-                #0ea5e9 60%,
-                #0284c7 75%,
-                #0369a1 90%,
-                #0c4a6e 100%);
+                #e0f2fe 0%, #bae6fd 15%, #7dd3fc 30%, #38bdf8 45%,
+                #0ea5e9 60%, #0284c7 75%, #0369a1 90%, #0c4a6e 100%);
             background-size: 400% 400%;
-            animation: slide-float 30s ease-in-out infinite;
+            animation: gradientFlow 25s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .apropos-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: start;
-            position: relative;
-            z-index: 10;
-            padding-top: 2rem;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        @media (min-width: 992px) {
+            .apropos-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 5rem;
+            }
         }
 
         .apropos-text {
-            animation: wave-motion 20s ease-in-out infinite;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(15px);
-            padding: 3.5rem;
-            border-radius: 50px;
+            padding: clamp(1.5rem, 5vw, 3.5rem);
+            border-radius: clamp(25px, 5vw, 50px);
             border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 40px 60px -25px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
-            grid-column: 1;
-        }
-
-        .apropos-text::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
-            animation: spin-smooth 40s linear infinite;
-            pointer-events: none;
+            animation: fadeInLeft 1.3s ease-out;
+            width: 100%;
         }
 
         .apropos-text h2 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 6vw, 3rem);
             font-weight: 300;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             color: #0f172a;
-            position: relative;
-            display: inline-block;
-            letter-spacing: 2.5px;
-            text-shadow: 0 0 15px rgba(255,255,255,0.3);
-            animation: breathe 8s ease-in-out infinite, glow-pulse 6s ease-in-out infinite;
-        }
-
-        .apropos-text h2::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            width: 150px;
-            height: 2px;
-            background: linear-gradient(90deg, #0f172a, rgba(15,23,42,0.2));
-            animation: wave-motion 6s ease-in-out infinite;
         }
 
         .apropos-text p {
             color: #0f172a;
-            margin-bottom: 1.3rem;
-            font-size: 1.15rem;
-            line-height: 2;
-            font-weight: 400;
-            transition: all 0.5s;
-            position: relative;
-            z-index: 2;
-            animation: breathe 10s ease-in-out infinite;
-            animation-fill-mode: both;
-        }
-
-        .apropos-text p:nth-child(2) { animation-delay: 0.1s; }
-        .apropos-text p:nth-child(3) { animation-delay: 0.2s; }
-        .apropos-text p:nth-child(4) { animation-delay: 0.3s; }
-        .apropos-text p:nth-child(5) { animation-delay: 0.4s; }
-
-        .apropos-text p:hover {
-            transform: translateX(12px) scale(1.02);
-            color: #000000;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+            margin-bottom: 1rem;
+            font-size: clamp(1rem, 3vw, 1.15rem);
+            line-height: 1.8;
         }
 
         .apropos-text p:last-of-type {
-            font-style: italic;
-            color: #0f172a;
-            margin-top: 2.5rem;
-            padding: 1.8rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
             background: rgba(255,255,255,0.25);
             border-radius: 25px;
             border-left: 5px solid #0f172a;
-            font-size: 1.2rem;
-            font-weight: 400;
-            backdrop-filter: blur(8px);
-            animation: glow-pulse 5s ease-in-out infinite, breathe 6s ease-in-out infinite;
+            font-size: clamp(1rem, 3vw, 1.2rem);
         }
 
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.2rem;
-            margin-top: 3rem;
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         .skill {
-            padding: 12px 28px;
+            padding: clamp(8px, 2vw, 12px) clamp(16px, 4vw, 28px);
             background: rgba(255,255,255,0.2);
             border: 1px solid rgba(255,255,255,0.4);
             border-radius: 40px;
             color: #0f172a;
             font-weight: 400;
-            font-size: 1rem;
-            transition: all 0.5s;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: var(--transition);
             backdrop-filter: blur(8px);
-            cursor: default;
-            position: relative;
-            overflow: hidden;
-            animation: breathe 12s ease-in-out infinite, glow-pulse 8s ease-in-out infinite;
-            animation-fill-mode: both;
-        }
-
-        .skill:nth-child(1) { animation-delay: 0.1s; }
-        .skill:nth-child(2) { animation-delay: 0.2s; }
-        .skill:nth-child(3) { animation-delay: 0.3s; }
-
-        .skill::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
-            animation: spin-smooth 25s linear infinite;
-            opacity: 0;
-            transition: opacity 0.5s;
         }
 
         .skill:hover {
             transform: translateY(-8px) scale(1.05);
             background: rgba(255,255,255,0.35);
-            border-color: rgba(255,255,255,0.7);
-            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2);
-        }
-
-        .skill:hover::before {
-            opacity: 1;
         }
 
         .apropos-image {
-            position: relative;
             display: flex;
             justify-content: center;
-            animation: slide-float 20s ease-in-out infinite, morph 15s ease-in-out infinite;
-            grid-column: 2;
-            margin-top: -20px;
+            animation: fadeInRight 1.3s ease-out;
+            width: 100%;
         }
 
         .image-frame {
-            position: relative;
             width: 100%;
             max-width: 400px;
             border-radius: 15px;
             padding: 6px;
             background: rgba(255,255,255,0.15);
-            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.3);
-            z-index: 2;
-            animation: glow-pulse 6s ease-in-out infinite;
         }
 
         .apropos-image img {
             width: 100%;
             height: auto;
             border-radius: 10px;
-            transition: transform 0.3s ease;
             display: block;
-            opacity: 1;
-            position: relative;
-            z-index: 3;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: breathe 8s ease-in-out infinite;
         }
 
-        .apropos-image img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
+        /* ===== SECTION CONTACT RESPONSIVE ===== */
         #contact {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            position: relative;
             background: linear-gradient(135deg, 
-                rgba(3,7,18,0.96) 0%, 
-                rgba(10,15,25,0.96) 33%,
-                rgba(15,20,30,0.96) 66%,
-                rgba(3,7,18,0.96) 100%);
+                rgba(3,7,18,0.96) 0%, rgba(10,15,25,0.96) 33%,
+                rgba(15,20,30,0.96) 66%, rgba(3,7,18,0.96) 100%);
             background-size: 400% 400%;
-            animation: wave-motion 30s ease-in-out infinite;
+            animation: gradientFlow 30s ease infinite;
         }
 
         #contact h2 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 6vw, 3rem);
             font-weight: 300;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: #ffffff;
-            letter-spacing: 2.5px;
-            text-shadow: 0 0 25px rgba(123,216,255,0.4);
-            animation: glow-pulse 6s ease-in-out infinite, slide-float 12s ease-in-out infinite;
         }
 
         .contact-subtitle {
-            color: #b0c4de;
-            font-size: 1.3rem;
-            margin-bottom: 3.5rem;
+            color: var(--text-muted);
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            margin-bottom: 2.5rem;
             font-weight: 300;
-            letter-spacing: 1.5px;
-            animation: breathe 8s ease-in-out infinite, glow-pulse 10s ease-in-out infinite;
         }
 
         .contact-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
         .contact-card {
             background: rgba(20,25,40,0.35);
             backdrop-filter: blur(15px);
-            padding: 2rem 1.5rem;
+            padding: clamp(1.5rem, 4vw, 2rem);
             border-radius: 30px;
             border: 1px solid rgba(123,216,255,0.15);
-            transition: all 0.6s;
-            animation: breathe 12s ease-in-out infinite, float-particle 25s ease-in-out infinite;
-            animation-fill-mode: both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-card:nth-child(1) { animation-delay: 0.2s; }
-        .contact-card:nth-child(2) { animation-delay: 0.4s; }
-        .contact-card:nth-child(3) { animation-delay: 0.6s; }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(123,216,255,0.08) 0%, transparent 70%);
-            animation: spin-smooth 30s linear infinite;
-            opacity: 0;
-            transition: opacity 0.6s;
-        }
-
-        .contact-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #7bd8ff, #ac94ff, transparent);
-            transform: translateX(-100%);
-            transition: transform 0.8s;
-            animation: shine 5s linear infinite;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(172,148,255,0.3);
-            background: rgba(25,30,45,0.45);
-            box-shadow: 0 40px 50px -20px rgba(0,0,0,0.6);
-        }
-
-        .contact-card:hover::before {
-            opacity: 1;
-        }
-
-        .contact-card:hover::after {
-            transform: translateX(100%);
+            transition: var(--transition);
+            animation: fadeInUp 1.2s ease-out;
         }
 
         .contact-icon {
-            font-size: 2.8rem;
-            margin-bottom: 1.2rem;
-            display: inline-block;
-            opacity: 0.9;
-            filter: drop-shadow(0 0 15px rgba(123,216,255,0.2));
-            animation: slide-float 10s ease-in-out infinite, glow-pulse 5s ease-in-out infinite;
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            margin-bottom: 1rem;
         }
 
         .contact-card h3 {
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 4vw, 1.4rem);
             color: #ffffff;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
             font-weight: 300;
-            letter-spacing: 1.5px;
-            animation: glow-pulse 5s ease-in-out infinite;
         }
 
         .contact-card p {
-            color: #b0c4de;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            font-weight: 300;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            word-break: break-word;
         }
 
         .contact-link {
             display: inline-block;
-            padding: 10px 28px;
+            padding: clamp(8px, 2vw, 10px) clamp(16px, 4vw, 28px);
             background: rgba(123,216,255,0.06);
-            color: #b0c4de;
+            color: var(--text-muted);
             text-decoration: none;
             border-radius: 30px;
-            font-weight: 300;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
             border: 1px solid rgba(123,216,255,0.2);
-            transition: all 0.5s;
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 1px;
-            animation: breathe 6s ease-in-out infinite;
-        }
-
-        .contact-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-            transition: left 0.7s;
-            animation: shine 4s linear infinite;
-        }
-
-        .contact-link:hover {
-            background: rgba(172,148,255,0.12);
-            color: #ffffff;
-            border-color: rgba(172,148,255,0.4);
-            transform: translateY(-4px) scale(1.02);
-        }
-
-        .contact-link:hover::before {
-            left: 100%;
+            transition: var(--transition);
         }
 
         .social-links {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             justify-content: center;
-            margin-top: 3.5rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
         }
 
         .social-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.8rem;
-            padding: 12px 32px;
+            gap: 0.5rem;
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 5vw, 32px);
             background: rgba(20,25,40,0.4);
-            color: #b0c4de;
+            color: var(--text-muted);
             text-decoration: none;
             border-radius: 30px;
             border: 1px solid rgba(123,216,255,0.15);
-            transition: all 0.5s;
-            font-weight: 300;
-            letter-spacing: 1.5px;
-            position: relative;
-            overflow: hidden;
-            animation: breathe 10s ease-in-out infinite, slide-float 15s ease-in-out infinite;
-            font-size: 0.95rem;
+            transition: var(--transition);
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
         }
 
-        .social-link:nth-child(1) { animation-delay: 0.8s; }
-        .social-link:nth-child(2) { animation-delay: 1s; }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(172,148,255,0.1) 0%, transparent 70%);
-            animation: spin-smooth 25s linear infinite;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .social-link:hover {
-            background: rgba(30,35,50,0.5);
-            color: #ffffff;
-            border-color: rgba(172,148,255,0.3);
-            transform: translateY(-6px) scale(1.02);
-        }
-
-        .social-link:hover::before {
-            opacity: 1;
-        }
-
+        /* ===== SECTION WHATSAPP RESPONSIVE ===== */
         .whatsapp-section {
-            padding: 120px 0;
+            padding: 60px 0;
             background: linear-gradient(135deg, 
-                rgba(3,7,18,0.98) 0%, 
-                rgba(10,15,25,0.98) 50%,
-                rgba(15,20,30,0.98) 100%);
+                rgba(3,7,18,0.98) 0%, rgba(10,15,25,0.98) 50%, rgba(15,20,30,0.98) 100%);
         }
 
         .whatsapp-container {
@@ -968,182 +460,132 @@
             margin: 0 auto;
             background: rgba(20,25,40,0.35);
             backdrop-filter: blur(20px);
-            padding: 4rem;
-            border-radius: 70px;
+            padding: clamp(1.5rem, 5vw, 4rem);
+            border-radius: clamp(30px, 8vw, 70px);
             border: 1px solid rgba(123,216,255,0.15);
-            animation: breathe 12s ease-in-out infinite, glow-pulse 10s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .whatsapp-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(37,211,102,0.05) 0%, transparent 70%);
-            animation: spin-smooth 45s linear infinite, glow-pulse 15s ease-in-out infinite;
+            animation: zoomIn 1.5s ease-out;
         }
 
         .whatsapp-header {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-            position: relative;
-            z-index: 2;
+            gap: clamp(0.8rem, 3vw, 2rem);
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .whatsapp-icon-large {
-            font-size: 5rem;
-            opacity: 0.9;
-            animation: slide-float 8s ease-in-out infinite, glow-pulse 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 25px rgba(37,211,102,0.3));
+            font-size: clamp(3rem, 10vw, 5rem);
         }
 
         .whatsapp-header h3 {
-            font-size: 2.8rem;
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
             font-weight: 300;
             color: #ffffff;
-            letter-spacing: 2px;
-            animation: glow-pulse 5s ease-in-out infinite;
+            text-align: center;
         }
 
         .whatsapp-header h3 span {
             color: #25D366;
-            opacity: 0.95;
-            text-shadow: 0 0 20px rgba(37,211,102,0.3);
-            animation: breathe 4s ease-in-out infinite;
-        }
-
-        .whatsapp-subtitle {
-            text-align: center;
-            color: #b0c4de;
-            margin-bottom: 3rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-            font-size: 1.2rem;
-            animation: breathe 8s ease-in-out infinite;
         }
 
         .messaging-platforms {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .messaging-platforms {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .platform-card {
-            flex: 1;
             background: rgba(20,25,40,0.3);
             backdrop-filter: blur(10px);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 30px;
             border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s;
-            animation: breathe 10s ease-in-out infinite, slide-float 20s ease-in-out infinite;
-        }
-
-        .platform-card:nth-child(1) { animation-delay: 0s; }
-        .platform-card:nth-child(2) { animation-delay: 2s; }
-
-        .platform-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,255,255,0.2);
-            background: rgba(30,35,50,0.4);
+            text-align: center;
         }
 
         .platform-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-            animation: slide-float 8s ease-in-out infinite, glow-pulse 5s ease-in-out infinite;
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .platform-card h4 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #ffffff;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             font-weight: 300;
         }
 
         .platform-card p {
-            color: #b0c4de;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            word-break: break-word;
         }
 
         .platform-link {
             display: inline-block;
-            padding: 10px 25px;
+            padding: 8px 20px;
             background: rgba(123,216,255,0.1);
             color: #ffffff;
             text-decoration: none;
             border-radius: 30px;
             font-size: 0.9rem;
             border: 1px solid rgba(123,216,255,0.2);
-            transition: all 0.3s;
-            animation: breathe 6s ease-in-out infinite;
-        }
-
-        .platform-link:hover {
-            background: rgba(172,148,255,0.2);
-            border-color: rgba(172,148,255,0.4);
-            transform: translateY(-2px);
+            transition: var(--transition);
         }
 
         .messaging-separator {
             text-align: center;
-            margin: 1rem 0;
-            color: #b0c4de;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            animation: glow-pulse 5s ease-in-out infinite;
+            margin: 1.5rem 0;
+            color: var(--text-muted);
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-            position: relative;
-            z-index: 2;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
-        .form-group {
-            text-align: left;
+        @media (min-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .form-group.full-width {
+                grid-column: 1 / -1;
+            }
         }
 
         .form-group label {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 0.8rem;
-            color: #b0c4de;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
             font-weight: 300;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            animation: breathe 8s ease-in-out infinite, slide-float 12s ease-in-out infinite;
-            animation-fill-mode: both;
+            font-size: 0.95rem;
         }
-
-        .form-group:nth-child(1) label { animation-delay: 0.2s; }
-        .form-group:nth-child(2) label { animation-delay: 0.4s; }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 14px 22px;
+            padding: 12px 16px;
             background: rgba(10,15,25,0.5);
             border: 1px solid rgba(123,216,255,0.2);
             border-radius: 20px;
             font-size: 1rem;
-            color: #e0f2fe;
-            transition: all 0.5s;
+            color: var(--text-light);
             font-family: inherit;
+            transition: var(--transition);
         }
 
         .form-group input:focus,
@@ -1151,39 +593,23 @@
             outline: none;
             border-color: rgba(172,148,255,0.5);
             background: rgba(15,20,30,0.6);
-            transform: scale(1.01) translateY(-2px);
-            box-shadow: 0 0 0 4px rgba(172,148,255,0.1);
-        }
-
-        .form-group input:hover,
-        .form-group textarea:hover {
-            border-color: rgba(172,148,255,0.4);
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
         }
 
         .whatsapp-btn, .messenger-btn {
             width: 100%;
-            padding: 16px 45px;
+            padding: 14px 25px;
             color: #ffffff;
             border: none;
             border-radius: 40px;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 300;
             cursor: pointer;
-            transition: all 0.6s;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1.2rem;
-            margin-top: 1.5rem;
-            letter-spacing: 1.5px;
-            position: relative;
-            overflow: hidden;
-            z-index: 2;
-            animation: breathe 6s ease-in-out infinite, glow-pulse 5s ease-in-out infinite;
+            gap: 0.8rem;
+            margin-top: 1rem;
         }
 
         .whatsapp-btn {
@@ -1196,212 +622,132 @@
             border: 1px solid rgba(0,132,255,0.25);
         }
 
-        .whatsapp-btn::before, .messenger-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: spin-smooth 25s linear infinite;
-            opacity: 0;
-            transition: opacity 0.6s;
-        }
-
-        .whatsapp-btn::after, .messenger-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-            transition: left 0.8s;
-            animation: shine 5s linear infinite;
+        .whatsapp-btn:hover, .messenger-btn:hover {
+            transform: translateY(-5px) scale(1.02);
         }
 
         .whatsapp-btn:hover {
             background: rgba(37,211,102,0.15);
             border-color: rgba(37,211,102,0.4);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 25px 35px -15px rgba(37,211,102,0.2);
         }
 
         .messenger-btn:hover {
             background: rgba(0,132,255,0.15);
             border-color: rgba(0,132,255,0.4);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 25px 35px -15px rgba(0,132,255,0.2);
-        }
-
-        .whatsapp-btn:hover::before, .messenger-btn:hover::before {
-            opacity: 1;
-        }
-
-        .whatsapp-btn:hover::after, .messenger-btn:hover::after {
-            left: 100%;
         }
 
         .availability-info {
-            margin-top: 3rem;
-            padding: 2.2rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
             background: rgba(10,15,25,0.4);
             border-radius: 40px;
             border: 1px solid rgba(123,216,255,0.15);
-            backdrop-filter: blur(8px);
-            position: relative;
-            z-index: 2;
-            animation: glow-pulse 8s ease-in-out infinite;
         }
 
         .schedule {
             display: flex;
             justify-content: center;
-            gap: 2.5rem;
-            margin: 2rem 0;
+            gap: 1rem;
+            margin: 1.5rem 0;
             flex-wrap: wrap;
         }
 
         .time-badge {
-            padding: 10px 25px;
+            padding: 8px 16px;
             background: rgba(20,25,40,0.5);
             border-radius: 40px;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
             border: 1px solid rgba(123,216,255,0.2);
-            color: #b0c4de;
+            color: var(--text-muted);
             font-weight: 300;
-            font-size: 1rem;
-            transition: all 0.5s;
-            animation: breathe 10s ease-in-out infinite, slide-float 15s ease-in-out infinite;
-            animation-fill-mode: both;
-            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
 
-        .time-badge:nth-child(1) { animation-delay: 0.3s; }
-        .time-badge:nth-child(2) { animation-delay: 0.6s; }
-
-        .time-badge:hover {
-            border-color: rgba(172,148,255,0.4);
-            color: #ffffff;
-            transform: translateY(-4px) scale(1.02);
-            background: rgba(25,30,45,0.6);
-        }
-
-        .time-badge.morning { border-left: 4px solid #7bd8ff; }
-        .time-badge.afternoon { border-left: 4px solid #ac94ff; }
+        .time-badge.morning { border-left: 4px solid var(--primary-light); }
+        .time-badge.afternoon { border-left: 4px solid var(--primary-dark); }
 
         .availability-status {
             display: inline-block;
-            padding: 8px 25px;
+            padding: 6px 20px;
             background: rgba(37,211,102,0.12);
             border-radius: 40px;
             color: #25D366;
             font-weight: 300;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             border: 1px solid rgba(37,211,102,0.25);
-            animation: glow-pulse 4s ease-in-out infinite, breathe 5s ease-in-out infinite;
-            letter-spacing: 1px;
         }
 
+        /* ===== FOOTER RESPONSIVE ===== */
         footer {
             background: rgba(3, 7, 18, 0.7);
-            color: #b0c4de;
+            color: var(--text-muted);
             text-align: center;
-            padding: 2.5rem 0;
+            padding: 1.5rem 0;
             border-top: 1px solid rgba(123,216,255,0.15);
-            position: relative;
-            overflow: hidden;
-            animation: breathe 15s ease-in-out infinite;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(123,216,255,0.05) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(172,148,255,0.05) 0%, transparent 40%);
-            animation: liquid 20s ease-in-out infinite;
-        }
-
-        footer::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #7bd8ff, #ac94ff, transparent);
-            animation: wave-motion 12s ease-in-out infinite, shine 8s linear infinite;
         }
 
         footer p {
-            font-size: 1rem;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
             font-weight: 300;
             letter-spacing: 1.5px;
-            animation: glow-pulse 6s ease-in-out infinite, slide-float 10s ease-in-out infinite;
-            position: relative;
-            z-index: 2;
+            padding: 0 15px;
         }
+
+        /* ===== UTILITAIRES ===== */
+        .text-center {
+            text-align: center;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .gap-1 { gap: 0.5rem; }
+        .gap-2 { gap: 1rem; }
+        .gap-3 { gap: 1.5rem; }
     </style>
 </head>
 <body>
+    <!-- Éléments d'aura (version allégée pour mobile) -->
     <div class="aura aura-1"></div>
     <div class="aura aura-2"></div>
     <div class="aura aura-3"></div>
     <div class="aura aura-4"></div>
-    <div class="aura aura-5"></div>
-    <div class="aura aura-6"></div>
-    
     <div class="aura-line aura-line-1"></div>
     <div class="aura-line aura-line-2"></div>
-    <div class="aura-line aura-line-3"></div>
-    <div class="aura-line aura-line-4"></div>
-    
     <div class="aura-cloud aura-cloud-1"></div>
     <div class="aura-cloud aura-cloud-2"></div>
-    <div class="aura-cloud aura-cloud-3"></div>
-    <div class="aura-cloud aura-cloud-4"></div>
     
+    <!-- Éléments ninja (limités pour les petits écrans) -->
     <div class="ninja-weapon katana-1">⚔️</div>
     <div class="ninja-weapon katana-2">⚔️</div>
     <div class="ninja-weapon katana-3">⚔️</div>
-    <div class="ninja-weapon katana-4">⚔️</div>
-    <div class="ninja-weapon katana-5">⚔️</div>
-    <div class="ninja-weapon katana-6">⚔️</div>
-    
     <div class="ninja-weapon shuriken-1">✴️</div>
     <div class="ninja-weapon shuriken-2">✴️</div>
     <div class="ninja-weapon shuriken-3">✴️</div>
     <div class="ninja-weapon shuriken-4">✴️</div>
-    <div class="ninja-weapon shuriken-5">✴️</div>
-    <div class="ninja-weapon shuriken-6">✴️</div>
-    <div class="ninja-weapon shuriken-7">✴️</div>
-    <div class="ninja-weapon shuriken-8">✴️</div>
     
+    <!-- Particules -->
     <div class="aura-particle aura-particle-1"></div>
     <div class="aura-particle aura-particle-2"></div>
     <div class="aura-particle aura-particle-3"></div>
     <div class="aura-particle aura-particle-4"></div>
-    <div class="aura-particle aura-particle-5"></div>
-    <div class="aura-particle aura-particle-6"></div>
-    <div class="aura-particle aura-particle-7"></div>
-    <div class="aura-particle aura-particle-8"></div>
-    <div class="aura-particle aura-particle-9"></div>
-    <div class="aura-particle aura-particle-10"></div>
-    <div class="aura-particle aura-particle-11"></div>
-    <div class="aura-particle aura-particle-12"></div>
     
     <div class="aura-ray"></div>
 
     <header>
         <nav>
-            <a href="#accueil" class="logo">Mirindra Matthieu</a>
+            <a href="#accueil" class="logo">Mirindra M.</a>
             <div class="nav-links">
                 <a href="#accueil">Accueil</a>
                 <a href="#apropos">À propos</a>
@@ -1434,7 +780,7 @@
             </div>
             <div class="apropos-image">
                 <div class="image-frame">
-                    <img src="https://scontent.ftnr2-2.fna.fbcdn.net/v/t39.30808-6/642754626_122112963513211419_7763551596132436351_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=HrPMD1Mzk-wQ7kNvwF-W0Kk&_nc_oc=AdmitmpVlD_NkLZbjv5bb1BdGCCLKrDWIu8jwSkutlrW38sKkCh-4igqUNpNQk8v2sg&_nc_zt=23&_nc_ht=scontent.ftnr2-2.fna&_nc_gid=UrnADD8nIJ14FGwl_Mt82Q&_nc_ss=8&oh=00_AfxextLBeI-e-uEMJr1xXOL4FM1WFzyiLwUla6pesQhiMA&oe=69AAF757" alt="Photo de profil">
+                    <img src="https://scontent.ftnr2-2.fna.fbcdn.net/v/t39.30808-6/642754626_122112963513211419_7763551596132436351_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=HrPMD1Mzk-wQ7kNvwF-W0Kk&_nc_oc=AdmitmpVlD_NkLZbjv5bb1BdGCCLKrDWIu8jwSkutlrW38sKkCh-4igqUNpNQk8v2sg&_nc_zt=23&_nc_ht=scontent.ftnr2-2.fna&_nc_gid=UrnADD8nIJ14FGwl_Mt82Q&_nc_ss=8&oh=00_AfxextLBeI-e-uEMJr1xXOL4FM1WFzyiLwUla6pesQhiMA&oe=69AAF757" alt="Photo de profil" loading="lazy">
                 </div>
             </div>
         </div>
@@ -1452,7 +798,7 @@
                     <p>+261 38 62 876 80</p>
                     <a href="https://wa.me/261386287680?text=Bonjour%20Matthieu%2C%20je%20souhaite%20vous%20contacter%20pour%20un%20projet" 
                        class="contact-link" 
-                       target="_blank">
+                       target="_blank" rel="noopener">
                         Envoyer un message
                     </a>
                 </div>
@@ -1478,10 +824,10 @@
             </div>
 
             <div class="social-links">
-                <a href="#" class="social-link">
+                <a href="#" class="social-link" target="_blank" rel="noopener">
                     <span>📋</span> LinkedIn
                 </a>
-                <a href="#" class="social-link">
+                <a href="#" class="social-link" target="_blank" rel="noopener">
                     <span>💻</span> GitHub
                 </a>
             </div>
@@ -1496,31 +842,29 @@
                     <h3>Messagerie <span>Directe</span></h3>
                 </div>
                 
-                <p class="whatsapp-subtitle">
+                <p class="whatsapp-subtitle text-center">
                     Envoyez-moi un message instantanément sur la plateforme de votre choix
                 </p>
 
                 <div class="messaging-platforms">
-                    <!-- WhatsApp Card -->
                     <div class="platform-card">
                         <div class="platform-icon">📱</div>
                         <h4>WhatsApp</h4>
                         <p>+261 38 62 876 80</p>
                         <a href="https://wa.me/261386287680?text=Bonjour%20Matthieu%2C%20je%20souhaite%20vous%20contacter%20pour%20un%20projet" 
                            class="platform-link" 
-                           target="_blank">
+                           target="_blank" rel="noopener">
                             Envoyer sur WhatsApp
                         </a>
                     </div>
 
-                    <!-- Facebook Messenger Card -->
                     <div class="platform-card">
                         <div class="platform-icon">💬</div>
                         <h4>Facebook Messenger</h4>
                         <p>RATIANARIVO Mirindra Matthieu</p>
                         <a href="https://m.me/ratianarivo.mirindra" 
                            class="platform-link" 
-                           target="_blank">
+                           target="_blank" rel="noopener">
                             Envoyer sur Messenger
                         </a>
                     </div>
@@ -1551,16 +895,12 @@
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 1rem; justify-content: center;">
+                <div class="d-flex flex-wrap gap-2" style="justify-content: center;">
                     <button class="whatsapp-btn" id="sendWhatsAppBtn">
-                        <span>📤</span>
-                        WhatsApp
-                        <span>→</span>
+                        <span>📤</span> WhatsApp <span>→</span>
                     </button>
                     <button class="messenger-btn" id="sendMessengerBtn">
-                        <span>💬</span>
-                        Messenger
-                        <span>→</span>
+                        <span>💬</span> Messenger <span>→</span>
                     </button>
                 </div>
 
@@ -1573,7 +913,7 @@
                             <span>☀️</span> APRÈS-MIDI : 14h - 18h
                         </span>
                     </div>
-                    <div style="text-align: center;">
+                    <div class="text-center">
                         <span class="availability-status" id="availabilityStatus">
                             ⏰ Disponible aux horaires indiqués
                         </span>
@@ -1590,112 +930,132 @@
     </footer>
 
     <script>
-        document.getElementById('sendWhatsAppBtn').addEventListener('click', function() {
-            var nom = document.getElementById('nom').value.trim();
-            var telephone = document.getElementById('telephone').value.trim();
-            var message = document.getElementById('message').value.trim();
-            
-            if (!nom) {
-                alert('Veuillez entrer votre nom');
-                return;
-            }
-            
-            if (!message) {
-                alert('Veuillez entrer votre message');
-                return;
-            }
-            
-            var whatsappNumber = '261386287680';
-            var texteMessage = `*Nouveau message du portfolio*%0A%0A`;
-            texteMessage += `👤 *Nom :* ${nom}%0A`;
-            
-            if (telephone) {
-                texteMessage += `📞 *Téléphone :* ${telephone}%0A`;
-            }
-            
-            texteMessage += `%0A📝 *Message :*%0A${message}`;
-            
-            window.open(`https://wa.me/${whatsappNumber}?text=${texteMessage}`, '_blank');
-        });
-
-        document.getElementById('sendMessengerBtn').addEventListener('click', function() {
-            var nom = document.getElementById('nom').value.trim();
-            var telephone = document.getElementById('telephone').value.trim();
-            var message = document.getElementById('message').value.trim();
-            
-            if (!nom) {
-                alert('Veuillez entrer votre nom');
-                return;
-            }
-            
-            if (!message) {
-                alert('Veuillez entrer votre message');
-                return;
-            }
-            
-            var texteMessage = `Bonjour Matthieu, je suis ${nom}.`;
-            
-            if (telephone) {
-                texteMessage += ` Mon téléphone: ${telephone}.`;
-            }
-            
-            texteMessage += ` ${message}`;
-            
-            window.open(`https://m.me/ratianarivo.mirindra?text=${encodeURIComponent(texteMessage)}`, '_blank');
-        });
-
-        function updateAvailability() {
-            var now = new Date();
-            var hour = now.getHours();
-            var minutes = now.getMinutes();
-            var currentTime = hour + minutes/60;
-            
-            var morningStart = 8;
-            var morningEnd = 12;
-            var afternoonStart = 14;
-            var afternoonEnd = 18;
-            
-            var isAvailable = (currentTime >= morningStart && currentTime < morningEnd) || 
-                             (currentTime >= afternoonStart && currentTime < afternoonEnd);
-            
-            var statusElement = document.getElementById('availabilityStatus');
-            
-            if (isAvailable) {
-                statusElement.innerHTML = '🟢 DISPONIBLE MAINTENANT';
-                statusElement.style.background = 'rgba(37,211,102,0.15)';
-                statusElement.style.color = '#25D366';
-            } else {
-                statusElement.innerHTML = '⏰ HORS HORAIRE - Réponse à mon retour';
-                statusElement.style.background = 'rgba(255,165,0,0.15)';
-                statusElement.style.color = '#FFA500';
-            }
-        }
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const auraElements = document.querySelectorAll('.aura, .aura-cloud, .ninja-weapon, .aura-line, .aura-particle');
-            auraElements.forEach((el, index) => {
-                const speed = 0.05 + (index * 0.01);
-                el.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
-
         document.addEventListener('DOMContentLoaded', function() {
+            // Gestionnaires pour les boutons
+            const whatsappBtn = document.getElementById('sendWhatsAppBtn');
+            const messengerBtn = document.getElementById('sendMessengerBtn');
+            
+            if (whatsappBtn) {
+                whatsappBtn.addEventListener('click', function() {
+                    const nom = document.getElementById('nom').value.trim();
+                    const telephone = document.getElementById('telephone').value.trim();
+                    let message = document.getElementById('message').value.trim();
+                    
+                    if (!nom) {
+                        alert('Veuillez entrer votre nom');
+                        return;
+                    }
+                    
+                    if (!message) {
+                        alert('Veuillez entrer votre message');
+                        return;
+                    }
+                    
+                    // Message par défaut si vide
+                    if (message === '') {
+                        message = 'Bonjour Matthieu, je souhaite vous contacter pour un projet.';
+                    }
+                    
+                    const whatsappNumber = '261386287680';
+                    let texteMessage = `*Nouveau message du portfolio*%0A%0A`;
+                    texteMessage += `👤 *Nom :* ${nom}%0A`;
+                    
+                    if (telephone) {
+                        texteMessage += `📞 *Téléphone :* ${telephone}%0A`;
+                    }
+                    
+                    texteMessage += `%0A📝 *Message :*%0A${message}`;
+                    
+                    window.open(`https://wa.me/${whatsappNumber}?text=${texteMessage}`, '_blank');
+                });
+            }
+
+            if (messengerBtn) {
+                messengerBtn.addEventListener('click', function() {
+                    const nom = document.getElementById('nom').value.trim();
+                    const telephone = document.getElementById('telephone').value.trim();
+                    let message = document.getElementById('message').value.trim();
+                    
+                    if (!nom) {
+                        alert('Veuillez entrer votre nom');
+                        return;
+                    }
+                    
+                    if (!message) {
+                        alert('Veuillez entrer votre message');
+                        return;
+                    }
+                    
+                    let texteMessage = `Bonjour Matthieu, je suis ${nom}.`;
+                    
+                    if (telephone) {
+                        texteMessage += ` Mon téléphone: ${telephone}.`;
+                    }
+                    
+                    texteMessage += ` ${message}`;
+                    
+                    window.open(`https://m.me/ratianarivo.mirindra?text=${encodeURIComponent(texteMessage)}`, '_blank');
+                });
+            }
+
+            // Navigation smooth
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Gestion de la disponibilité
+            function updateAvailability() {
+                const now = new Date();
+                const hour = now.getHours();
+                const minutes = now.getMinutes();
+                const currentTime = hour + minutes/60;
+                
+                const morningStart = 8;
+                const morningEnd = 12;
+                const afternoonStart = 14;
+                const afternoonEnd = 18;
+                
+                const isAvailable = (currentTime >= morningStart && currentTime < morningEnd) || 
+                                   (currentTime >= afternoonStart && currentTime < afternoonEnd);
+                
+                const statusElement = document.getElementById('availabilityStatus');
+                
+                if (statusElement) {
+                    if (isAvailable) {
+                        statusElement.innerHTML = '🟢 DISPONIBLE MAINTENANT';
+                        statusElement.style.background = 'rgba(37,211,102,0.15)';
+                        statusElement.style.color = '#25D366';
+                    } else {
+                        statusElement.innerHTML = '⏰ HORS HORAIRE - Réponse à mon retour';
+                        statusElement.style.background = 'rgba(255,165,0,0.15)';
+                        statusElement.style.color = '#FFA500';
+                    }
+                }
+            }
+
             updateAvailability();
             setInterval(updateAvailability, 60000);
+
+            // Effet de parallaxe léger (optionnel, désactivé sur mobile pour performance)
+            if (window.innerWidth > 768) {
+                window.addEventListener('scroll', function() {
+                    const scrolled = window.pageYOffset;
+                    const auraElements = document.querySelectorAll('.aura, .aura-cloud, .ninja-weapon, .aura-line, .aura-particle');
+                    auraElements.forEach((el, index) => {
+                        const speed = 0.03 + (index * 0.005);
+                        el.style.transform = `translateY(${scrolled * speed}px)`;
+                    });
+                });
+            }
         });
     </script>
 </body>
