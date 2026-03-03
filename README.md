@@ -26,106 +26,75 @@
             padding: 0 20px;
         }
 
-        /* Animations douces */
+        /* Animations */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
-        @keyframes shimmer {
-            0% {
-                background-position: -200% 0;
-            }
-            100% {
-                background-position: 200% 0;
-            }
+        @keyframes floatSlow {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
-        @keyframes borderGlow {
-            0%, 100% {
-                box-shadow: 0 0 5px rgba(135, 206, 235, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 20px rgba(135, 206, 235, 0.6);
-            }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { box-shadow: 0 0 5px rgba(135, 206, 235, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(135, 206, 235, 0.6); }
         }
 
         @keyframes clockPulse {
-            0% {
-                opacity: 0.7;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.1);
-            }
-            100% {
-                opacity: 0.7;
-                transform: scale(1);
-            }
+            0% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.7; transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0) scaleX(1); }
+            50% { transform: translateX(-25%) scaleX(1.1); }
+            100% { transform: translateX(0) scaleX(1); }
         }
 
         /* Header */
@@ -220,6 +189,112 @@
             display: flex;
             align-items: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        /* Éléments décoratifs */
+        .shape {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape-1 {
+            top: 10%;
+            left: 5%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(135,206,235,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            bottom: 10%;
+            right: 5%;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(95,158,160,0.15), rgba(70,130,180,0.15));
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: floatSlow 10s ease-in-out infinite;
+        }
+
+        .shape-3 {
+            top: 20%;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            border: 3px dashed rgba(135,206,235,0.3);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .shape-4 {
+            bottom: 15%;
+            left: 8%;
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.1);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        /* Dessins animés */
+        .drawing {
+            position: absolute;
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        .drawing-1 {
+            top: 15%;
+            right: 8%;
+            font-size: 4rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .drawing-2 {
+            bottom: 20%;
+            left: 5%;
+            font-size: 3.5rem;
+            animation: floatSlow 7s ease-in-out infinite;
+        }
+
+        .drawing-3 {
+            top: 40%;
+            left: 10%;
+            font-size: 2.5rem;
+            animation: rotate 15s linear infinite;
+        }
+
+        .drawing-4 {
+            bottom: 30%;
+            right: 12%;
+            font-size: 3rem;
+            animation: bounce 5s ease-in-out infinite;
+        }
+
+        .drawing-5 {
+            top: 60%;
+            right: 20%;
+            font-size: 2.8rem;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        /* Code SVG */
+        .code-drawing {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.2;
+        }
+
+        .code-drawing svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: #2c3e50;
+            stroke-width: 2;
         }
 
         /* Accueil */
@@ -231,6 +306,8 @@
 
         .hero {
             animation: scaleIn 1s ease-out;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
@@ -238,6 +315,7 @@
             margin-bottom: 1rem;
             color: #2c3e50;
             animation: float 4s ease-in-out infinite;
+            text-shadow: 3px 3px 0 rgba(255,255,255,0.5);
         }
 
         .hero p {
@@ -289,12 +367,15 @@
         #apropos {
             background: linear-gradient(135deg, #ffffff, #f0f9ff);
             animation: fadeIn 1s ease-out;
+            position: relative;
         }
 
         .apropos-content {
             display: flex;
             align-items: center;
             gap: 4rem;
+            position: relative;
+            z-index: 2;
         }
 
         .apropos-text {
@@ -352,11 +433,24 @@
             animation-fill-mode: both;
             cursor: default;
             box-shadow: 0 4px 10px rgba(135, 206, 235, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
         .skill:nth-child(1) { animation-delay: 0.2s; }
         .skill:nth-child(2) { animation-delay: 0.4s; }
         .skill:nth-child(3) { animation-delay: 0.6s; }
+
+        .skill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            transition: left 0.5s;
+        }
 
         .skill:hover {
             transform: translateY(-5px) scale(1.05);
@@ -365,11 +459,29 @@
             color: white;
         }
 
+        .skill:hover::before {
+            left: 100%;
+        }
+
         .apropos-image {
             flex: 1;
             display: flex;
             justify-content: center;
             animation: slideInRight 1s ease-out;
+            position: relative;
+        }
+
+        .apropos-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle, rgba(135,206,235,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+            z-index: -1;
         }
 
         .apropos-image img {
@@ -393,6 +505,7 @@
             background: linear-gradient(135deg, #f0f9ff, #e1f5fe);
             text-align: center;
             padding-bottom: 50px;
+            position: relative;
         }
 
         #contact h2 {
@@ -427,11 +540,24 @@
             border: 2px solid rgba(255, 255, 255, 0.8);
             animation: scaleIn 0.8s ease-out;
             animation-fill-mode: both;
+            position: relative;
+            overflow: hidden;
         }
 
         .contact-card:nth-child(1) { animation-delay: 0.2s; }
         .contact-card:nth-child(2) { animation-delay: 0.4s; }
         .contact-card:nth-child(3) { animation-delay: 0.6s; }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(135,206,235,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
 
         .contact-card:hover {
             transform: translateY(-15px);
@@ -550,6 +676,7 @@
             border-top: 3px solid #87CEEB;
             border-bottom: 3px solid #87CEEB;
             animation: fadeIn 1.2s ease-out;
+            position: relative;
         }
 
         .whatsapp-form-container {
@@ -561,6 +688,8 @@
             box-shadow: 0 20px 40px rgba(37, 211, 102, 0.15);
             border: 2px solid rgba(37, 211, 102, 0.1);
             animation: scaleIn 0.8s ease-out;
+            position: relative;
+            z-index: 2;
         }
 
         .whatsapp-header {
@@ -604,6 +733,7 @@
             flex-direction: column;
             text-align: left;
             gap: 8px;
+            position: relative;
         }
 
         .form-group label {
@@ -613,10 +743,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .form-group label i {
-            font-size: 1.3rem;
         }
 
         .form-group input,
@@ -745,6 +871,11 @@
             border-radius: 30px;
             color: #075E54;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .time-slot:hover {
+            transform: scale(1.05);
         }
 
         .time-slot.morning {
@@ -805,18 +936,6 @@
             opacity: 0.3;
             pointer-events: none;
             animation: wave 12s linear infinite;
-        }
-
-        @keyframes wave {
-            0% {
-                transform: translateX(0) scaleX(1);
-            }
-            50% {
-                transform: translateX(-25%) scaleX(1.1);
-            }
-            100% {
-                transform: translateX(0) scaleX(1);
-            }
         }
 
         /* Responsive */
@@ -891,6 +1010,11 @@
                 flex-direction: column;
                 gap: 10px;
             }
+
+            .drawing-1, .drawing-2, .drawing-3, .drawing-4, .drawing-5 {
+                font-size: 2rem;
+                opacity: 0.3;
+            }
         }
 
         @media (max-width: 480px) {
@@ -914,6 +1038,19 @@
     </style>
 </head>
 <body>
+    <!-- Éléments décoratifs et dessins -->
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+    
+    <!-- Dessins animés avec emojis -->
+    <div class="drawing drawing-1">💻</div>
+    <div class="drawing drawing-2">🚀</div>
+    <div class="drawing drawing-3">⚡</div>
+    <div class="drawing drawing-4">✨</div>
+    <div class="drawing drawing-5">🌟</div>
+
     <header>
         <nav>
             <a href="#accueil" class="logo">RATIANARIVO Mirindra Matthieu</a>
@@ -1053,7 +1190,7 @@
                     <div class="whatsapp-info">
                         <p>📱 <strong>Mon numéro WhatsApp :</strong> +261 38 62 876 80</p>
                         
-                        <!-- Nouveau badge de disponibilité avec horaires -->
+                        <!-- Badge de disponibilité avec horaires -->
                         <div class="availability-badge">
                             <div class="dispo-title">
                                 <span class="clock-icon">⏰</span>
@@ -1143,14 +1280,13 @@
 
         // Optionnel : Remplir automatiquement le message avec un texte par défaut
         document.addEventListener('DOMContentLoaded', function() {
-            // Vous pouvez modifier le message par défaut si nécessaire
             var messageField = document.getElementById('message');
             if (messageField.value === '') {
                 messageField.value = 'Bonjour Matthieu, je souhaite vous contacter pour un projet.';
             }
         });
 
-        // Afficher un message si en dehors des heures de disponibilité (optionnel)
+        // Afficher un message si en dehors des heures de disponibilité
         function checkAvailability() {
             var now = new Date();
             var hour = now.getHours();
@@ -1174,14 +1310,13 @@
                     availabilityElement.style.border = '3px solid #4CAF50';
                     
                     // Ajouter une indication de disponibilité immédiate
-                    var dispoNow = document.createElement('div');
-                    dispoNow.style.marginTop = '10px';
-                    dispoNow.style.color = '#2E7D32';
-                    dispoNow.style.fontWeight = 'bold';
-                    dispoNow.innerHTML = '🟢 DISPONIBLE MAINTENANT';
-                    
-                    // Ne pas dupliquer
                     if (!document.querySelector('.dispo-now')) {
+                        var dispoNow = document.createElement('div');
+                        dispoNow.style.marginTop = '10px';
+                        dispoNow.style.color = '#2E7D32';
+                        dispoNow.style.fontWeight = 'bold';
+                        dispoNow.style.animation = 'pulse 2s infinite';
+                        dispoNow.innerHTML = '🟢 DISPONIBLE MAINTENANT';
                         dispoNow.className = 'dispo-now';
                         availabilityElement.appendChild(dispoNow);
                     }
