@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,7 @@
             z-index: 10;
         }
 
-        /* ===== THÈME NINJA - KATANAS ET SHURIKENS ===== */
+        /* ===== ANIMATIONS SUPPLEMENTAIRES ===== */
         @keyframes aura-pulse {
             0%, 100% { opacity: 0.15; filter: blur(30px); transform: scale(1); }
             50% { opacity: 0.3; filter: blur(45px); transform: scale(1.1); }
@@ -161,6 +161,93 @@
             100% { transform: translateX(0) translateY(0) scale(1); }
         }
 
+        /* ===== NOUVELLES ANIMATIONS ===== */
+        @keyframes rotate3d {
+            0% { transform: perspective(500px) rotateY(0deg); }
+            50% { transform: perspective(500px) rotateY(180deg); }
+            100% { transform: perspective(500px) rotateY(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes pulse-scale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes rotate-scale {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes slide-bounce {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes color-pulse {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(30deg); }
+        }
+
+        @keyframes float-extreme {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -15px) rotate(5deg); }
+            50% { transform: translate(-10px, 10px) rotate(-5deg); }
+            75% { transform: translate(15px, -10px) rotate(3deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-medium {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(720deg); }
+        }
+
+        @keyframes spin-fast {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(1440deg); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-10px) translateY(5px); }
+            50% { transform: translateX(0) translateY(-5px); }
+            75% { transform: translateX(10px) translateY(5px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+
         /* ===== ÉLÉMENTS D'AURA ===== */
         .aura {
             position: fixed;
@@ -176,7 +263,7 @@
             width: 700px;
             height: 700px;
             background: radial-gradient(circle, rgba(123, 216, 255, 0.12) 0%, transparent 70%);
-            animation: aura-pulse 15s ease-in-out infinite;
+            animation: aura-pulse 15s ease-in-out infinite, color-pulse 20s linear infinite;
         }
 
         .aura-2 {
@@ -185,7 +272,7 @@
             width: 800px;
             height: 800px;
             background: radial-gradient(circle, rgba(172, 148, 255, 0.1) 0%, transparent 70%);
-            animation: aura-pulse 18s ease-in-out infinite reverse;
+            animation: aura-pulse 18s ease-in-out infinite reverse, color-pulse 25s linear infinite reverse;
         }
 
         .aura-3 {
@@ -194,7 +281,7 @@
             width: 600px;
             height: 600px;
             background: radial-gradient(circle, rgba(123, 216, 255, 0.08) 0%, transparent 70%);
-            animation: aura-flow 25s ease-in-out infinite;
+            animation: aura-flow 25s ease-in-out infinite, float-extreme 30s ease-in-out infinite;
         }
 
         .aura-4 {
@@ -203,7 +290,7 @@
             width: 650px;
             height: 650px;
             background: radial-gradient(circle, rgba(172, 148, 255, 0.09) 0%, transparent 70%);
-            animation: aura-float 22s ease-in-out infinite;
+            animation: aura-float 22s ease-in-out infinite, spin-slow 40s linear infinite;
         }
 
         .aura-5 {
@@ -212,7 +299,7 @@
             width: 500px;
             height: 500px;
             background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-            animation: aura-spiral 30s linear infinite;
+            animation: aura-spiral 30s linear infinite, pulse-scale 8s ease-in-out infinite;
         }
 
         .aura-6 {
@@ -221,7 +308,7 @@
             width: 450px;
             height: 450px;
             background: radial-gradient(circle, rgba(123, 216, 255, 0.06) 0%, transparent 70%);
-            animation: mist-weave 28s ease-in-out infinite;
+            animation: mist-weave 28s ease-in-out infinite, bounce 12s ease-in-out infinite;
         }
 
         .aura-line {
@@ -234,10 +321,10 @@
             z-index: 0;
         }
 
-        .aura-line-1 { left: 15%; animation: aura-float 16s ease-in-out infinite; }
-        .aura-line-2 { right: 25%; animation: aura-float 20s ease-in-out infinite reverse; }
-        .aura-line-3 { left: 45%; animation: aura-float 24s ease-in-out infinite; }
-        .aura-line-4 { right: 35%; animation: aura-float 18s ease-in-out infinite reverse; }
+        .aura-line-1 { left: 15%; animation: aura-float 16s ease-in-out infinite, wave 14s ease-in-out infinite; }
+        .aura-line-2 { right: 25%; animation: aura-float 20s ease-in-out infinite reverse, wave 18s ease-in-out infinite reverse; }
+        .aura-line-3 { left: 45%; animation: aura-float 24s ease-in-out infinite, shake 22s ease-in-out infinite; }
+        .aura-line-4 { right: 35%; animation: aura-float 18s ease-in-out infinite reverse, glitch 12s ease-in-out infinite; }
 
         /* Nuages d'aura */
         .aura-cloud {
@@ -247,7 +334,7 @@
             filter: blur(50px);
             pointer-events: none;
             z-index: 0;
-            animation: aura-flow 30s ease-in-out infinite;
+            animation: aura-flow 30s ease-in-out infinite, float-slow 40s ease-in-out infinite;
         }
 
         .aura-cloud-1 {
@@ -300,42 +387,42 @@
             top: 15%;
             left: 8%;
             transform: rotate(-15deg);
-            animation: katana-swing 18s ease-in-out infinite;
+            animation: katana-swing 18s ease-in-out infinite, glow-soft 5s ease-in-out infinite;
         }
 
         .katana-2 {
             top: 75%;
             right: 10%;
             transform: rotate(160deg);
-            animation: katana-swing 22s ease-in-out infinite reverse;
+            animation: katana-swing 22s ease-in-out infinite reverse, glow-soft 6s ease-in-out infinite 1s;
         }
 
         .katana-3 {
             bottom: 20%;
             left: 15%;
             transform: rotate(45deg);
-            animation: katana-swing 20s ease-in-out infinite;
+            animation: katana-swing 20s ease-in-out infinite, glow-soft 7s ease-in-out infinite 2s;
         }
 
         .katana-4 {
             top: 45%;
             right: 20%;
             transform: rotate(-120deg);
-            animation: katana-swing 24s ease-in-out infinite reverse;
+            animation: katana-swing 24s ease-in-out infinite reverse, glow-soft 8s ease-in-out infinite 3s;
         }
 
         .katana-5 {
             bottom: 35%;
             right: 30%;
             transform: rotate(90deg);
-            animation: katana-swing 26s ease-in-out infinite;
+            animation: katana-swing 26s ease-in-out infinite, glow-soft 9s ease-in-out infinite 4s;
         }
 
         .katana-6 {
             top: 60%;
             left: 25%;
             transform: rotate(-45deg);
-            animation: katana-swing 28s ease-in-out infinite reverse;
+            animation: katana-swing 28s ease-in-out infinite reverse, glow-soft 10s ease-in-out infinite 5s;
         }
 
         /* Shurikens */
@@ -343,56 +430,56 @@
             top: 10%;
             right: 15%;
             font-size: 1.8rem;
-            animation: shuriken-spin 12s linear infinite;
+            animation: shuriken-spin 12s linear infinite, float 8s ease-in-out infinite;
         }
 
         .shuriken-2 {
             bottom: 15%;
             left: 20%;
             font-size: 1.8rem;
-            animation: shuriken-spin 15s linear infinite reverse;
+            animation: shuriken-spin 15s linear infinite reverse, float 9s ease-in-out infinite 2s;
         }
 
         .shuriken-3 {
             top: 30%;
             left: 30%;
             font-size: 1.8rem;
-            animation: shuriken-float 14s ease-in-out infinite;
+            animation: shuriken-float 14s ease-in-out infinite, spin-slow 20s linear infinite;
         }
 
         .shuriken-4 {
             bottom: 40%;
             right: 15%;
             font-size: 1.8rem;
-            animation: shuriken-spin 18s linear infinite;
+            animation: shuriken-spin 18s linear infinite, bounce 10s ease-in-out infinite;
         }
 
         .shuriken-5 {
             top: 70%;
             right: 35%;
             font-size: 1.8rem;
-            animation: shuriken-float 16s ease-in-out infinite reverse;
+            animation: shuriken-float 16s ease-in-out infinite reverse, spin-medium 25s linear infinite;
         }
 
         .shuriken-6 {
             top: 85%;
             left: 10%;
             font-size: 1.8rem;
-            animation: shuriken-spin 20s linear infinite reverse;
+            animation: shuriken-spin 20s linear infinite reverse, slide-bounce 12s ease-in-out infinite;
         }
 
         .shuriken-7 {
             bottom: 25%;
             right: 40%;
             font-size: 1.8rem;
-            animation: shuriken-float 22s ease-in-out infinite;
+            animation: shuriken-float 22s ease-in-out infinite, spin-fast 30s linear infinite;
         }
 
         .shuriken-8 {
             top: 40%;
             left: 45%;
             font-size: 1.8rem;
-            animation: shuriken-spin 24s linear infinite;
+            animation: shuriken-spin 24s linear infinite, shake 8s ease-in-out infinite;
         }
 
         /* Particules d'aura */
@@ -405,7 +492,7 @@
             filter: blur(3px);
             pointer-events: none;
             z-index: 0;
-            animation: weapon-dance 35s ease-in-out infinite;
+            animation: weapon-dance 35s ease-in-out infinite, twinkle 5s ease-in-out infinite;
         }
 
         .aura-particle-1 { top: 8%; left: 8%; }
@@ -440,7 +527,7 @@
             );
             pointer-events: none;
             z-index: 0;
-            animation: light-ray 50s linear infinite;
+            animation: light-ray 50s linear infinite, rotate3d 60s ease-in-out infinite;
         }
 
         /* ===== HEADER AVEC AURA ===== */
@@ -474,7 +561,7 @@
             transition: all 0.4s;
             position: relative;
             text-shadow: 0 0 20px rgba(123,216,255,0.4);
-            animation: aura-glow 5s ease-in-out infinite;
+            animation: aura-glow 5s ease-in-out infinite, float 6s ease-in-out infinite;
         }
 
         .logo::before {
@@ -504,7 +591,7 @@
         }
 
         .logo:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
             text-shadow: 0 0 30px rgba(172,148,255,0.6);
         }
 
@@ -526,7 +613,13 @@
             transition: all 0.4s;
             position: relative;
             letter-spacing: 1.5px;
+            animation: float 8s ease-in-out infinite;
+            animation-delay: calc(0.2s * var(--i));
         }
+
+        .nav-links a:nth-child(1) { --i: 1; }
+        .nav-links a:nth-child(2) { --i: 2; }
+        .nav-links a:nth-child(3) { --i: 3; }
 
         .nav-links a::before {
             content: '';
@@ -557,6 +650,7 @@
         .nav-links a:hover {
             color: #ffffff;
             text-shadow: 0 0 15px rgba(123,216,255,0.4);
+            transform: translateY(-3px);
         }
 
         .nav-links a:hover::before {
@@ -590,7 +684,7 @@
             color: #ffffff;
             line-height: 1.2;
             text-shadow: 0 0 30px rgba(123,216,255,0.4);
-            animation: aura-glow 6s ease-in-out infinite;
+            animation: aura-glow 6s ease-in-out infinite, float 7s ease-in-out infinite;
             letter-spacing: 3px;
         }
 
@@ -604,7 +698,7 @@
             font-weight: 300;
             letter-spacing: 1.5px;
             line-height: 1.9;
-            animation: fadeInUp 1.8s ease-out 0.4s both;
+            animation: fadeInUp 1.8s ease-out 0.4s both, glow-soft 5s ease-in-out infinite 2s;
         }
 
         .btn {
@@ -622,7 +716,7 @@
             font-size: 1rem;
             position: relative;
             overflow: hidden;
-            animation: aura-glow 5s ease-in-out infinite;
+            animation: aura-glow 5s ease-in-out infinite, pulse-scale 4s ease-in-out infinite;
         }
 
         .btn::before {
@@ -652,7 +746,7 @@
         .btn:hover {
             background: rgba(172,148,255,0.08);
             border-color: rgba(172,148,255,0.4);
-            transform: translateY(-6px);
+            transform: translateY(-6px) scale(1.05);
             box-shadow: 0 25px 35px -15px rgba(0,0,0,0.6);
         }
 
@@ -729,6 +823,7 @@
             display: inline-block;
             letter-spacing: 2.5px;
             text-shadow: 0 0 15px rgba(255,255,255,0.3);
+            animation: float 8s ease-in-out infinite;
         }
 
         .apropos-text h2::after {
@@ -739,6 +834,7 @@
             width: 150px;
             height: 2px;
             background: linear-gradient(90deg, #0f172a, rgba(15,23,42,0.2));
+            animation: slide-bounce 6s ease-in-out infinite;
         }
 
         .apropos-text p {
@@ -760,7 +856,7 @@
         .apropos-text p:nth-child(5) { animation-delay: 0.4s; }
 
         .apropos-text p:hover {
-            transform: translateX(12px);
+            transform: translateX(12px) scale(1.02);
             color: #000000;
             text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
@@ -776,7 +872,7 @@
             font-size: 1.2rem;
             font-weight: 400;
             backdrop-filter: blur(8px);
-            animation: aura-glow 5s ease-in-out infinite;
+            animation: aura-glow 5s ease-in-out infinite, pulse-scale 6s ease-in-out infinite;
         }
 
         .skills {
@@ -799,7 +895,7 @@
             cursor: default;
             position: relative;
             overflow: hidden;
-            animation: fadeInUp 1s ease-out;
+            animation: fadeInUp 1s ease-out, float 10s ease-in-out infinite;
             animation-fill-mode: both;
         }
 
@@ -851,7 +947,7 @@
             background: rgba(255,255,255,0.25);
             backdrop-filter: blur(10px);
             box-shadow: 0 40px 60px -25px rgba(0,0,0,0.3);
-            animation: aura-float 10s ease-in-out infinite;
+            animation: aura-float 10s ease-in-out infinite, pulse-scale 8s ease-in-out infinite;
             z-index: 2;
         }
 
@@ -860,7 +956,7 @@
             position: absolute;
             border: 1px solid rgba(255,255,255,0.25);
             border-radius: 15px;
-            animation: aura-spiral 25s linear infinite;
+            animation: aura-spiral 25s linear infinite, glow-soft 5s ease-in-out infinite;
         }
 
         .aura-circle-1 {
@@ -918,7 +1014,7 @@
                 rgba(172,148,255,0.15) 330deg,
                 transparent 360deg
             );
-            animation: light-ray 40s linear infinite;
+            animation: light-ray 40s linear infinite, rotate3d 50s ease-in-out infinite;
             border-radius: 50%;
             z-index: 1;
             opacity: 0.6;
@@ -934,12 +1030,12 @@
             opacity: 1;
             position: relative;
             z-index: 3;
-            animation: aura-glow 6s ease-in-out infinite;
+            animation: aura-glow 6s ease-in-out infinite, float 12s ease-in-out infinite;
             box-shadow: 0 0 30px rgba(255,255,255,0.2);
         }
 
         .apropos-image img:hover {
-            transform: scale(1.03);
+            transform: scale(1.03) rotate(1deg);
             /* Pas de filtre au survol non plus */
             box-shadow: 0 0 40px rgba(255,255,255,0.3);
         }
@@ -967,7 +1063,7 @@
             color: #ffffff;
             letter-spacing: 2.5px;
             text-shadow: 0 0 25px rgba(123,216,255,0.4);
-            animation: aura-glow 6s ease-in-out infinite;
+            animation: aura-glow 6s ease-in-out infinite, float 8s ease-in-out infinite;
         }
 
         .contact-subtitle {
@@ -976,7 +1072,7 @@
             margin-bottom: 3.5rem;
             font-weight: 300;
             letter-spacing: 1.5px;
-            animation: fadeInUp 1.5s ease-out 0.2s both;
+            animation: fadeInUp 1.5s ease-out 0.2s both, glow-soft 6s ease-in-out infinite 3s;
         }
 
         .contact-cards {
@@ -993,7 +1089,7 @@
             border-radius: 30px;
             border: 1px solid rgba(123,216,255,0.15);
             transition: all 0.6s;
-            animation: fadeInUp 1.2s ease-out;
+            animation: fadeInUp 1.2s ease-out, float 12s ease-in-out infinite;
             animation-fill-mode: both;
             position: relative;
             overflow: hidden;
@@ -1049,7 +1145,7 @@
             display: inline-block;
             opacity: 0.9;
             filter: drop-shadow(0 0 15px rgba(123,216,255,0.2));
-            animation: aura-float 7s ease-in-out infinite;
+            animation: aura-float 7s ease-in-out infinite, spin-slow 20s linear infinite;
         }
 
         .contact-card h3 {
@@ -1058,6 +1154,7 @@
             margin-bottom: 0.8rem;
             font-weight: 300;
             letter-spacing: 1.5px;
+            animation: glow-soft 5s ease-in-out infinite;
         }
 
         .contact-card p {
@@ -1081,6 +1178,7 @@
             position: relative;
             overflow: hidden;
             letter-spacing: 1px;
+            animation: pulse-scale 4s ease-in-out infinite;
         }
 
         .contact-link::before {
@@ -1127,9 +1225,12 @@
             letter-spacing: 1.5px;
             position: relative;
             overflow: hidden;
-            animation: fadeInUp 1.5s ease-out 0.8s both;
+            animation: fadeInUp 1.5s ease-out 0.8s both, float 10s ease-in-out infinite;
             font-size: 0.95rem;
         }
+
+        .social-link:nth-child(1) { animation-delay: 0.8s; }
+        .social-link:nth-child(2) { animation-delay: 1s; }
 
         .social-link::before {
             content: '';
@@ -1172,7 +1273,7 @@
             padding: 4rem;
             border-radius: 70px;
             border: 1px solid rgba(123,216,255,0.15);
-            animation: zoomIn 1.5s ease-out;
+            animation: zoomIn 1.5s ease-out, pulse-scale 8s ease-in-out infinite;
             position: relative;
             overflow: hidden;
         }
@@ -1185,7 +1286,7 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(37,211,102,0.05) 0%, transparent 70%);
-            animation: aura-spiral 45s linear infinite;
+            animation: aura-spiral 45s linear infinite, glow-soft 10s ease-in-out infinite;
         }
 
         .whatsapp-header {
@@ -1201,7 +1302,7 @@
         .whatsapp-icon-large {
             font-size: 5rem;
             opacity: 0.9;
-            animation: aura-float 6s ease-in-out infinite;
+            animation: aura-float 6s ease-in-out infinite, spin-slow 30s linear infinite;
             filter: drop-shadow(0 0 25px rgba(37,211,102,0.3));
         }
 
@@ -1210,12 +1311,14 @@
             font-weight: 300;
             color: #ffffff;
             letter-spacing: 2px;
+            animation: glow-soft 5s ease-in-out infinite;
         }
 
         .whatsapp-header h3 span {
             color: #25D366;
             opacity: 0.95;
             text-shadow: 0 0 20px rgba(37,211,102,0.3);
+            animation: pulse-scale 4s ease-in-out infinite;
         }
 
         .whatsapp-subtitle {
@@ -1249,7 +1352,7 @@
             font-weight: 300;
             font-size: 1rem;
             letter-spacing: 1px;
-            animation: fadeInLeft 0.8s ease-out;
+            animation: fadeInLeft 0.8s ease-out, float 8s ease-in-out infinite;
             animation-fill-mode: both;
         }
 
@@ -1313,7 +1416,7 @@
             position: relative;
             overflow: hidden;
             z-index: 2;
-            animation: aura-glow 5s ease-in-out infinite;
+            animation: aura-glow 5s ease-in-out infinite, pulse-scale 4s ease-in-out infinite;
         }
 
         .whatsapp-btn::before {
@@ -1343,7 +1446,7 @@
         .whatsapp-btn:hover {
             background: rgba(37,211,102,0.15);
             border-color: rgba(37,211,102,0.4);
-            transform: translateY(-5px) scale(1.01);
+            transform: translateY(-5px) scale(1.05);
             box-shadow: 0 25px 35px -15px rgba(37,211,102,0.2);
         }
 
@@ -1364,6 +1467,7 @@
             backdrop-filter: blur(8px);
             position: relative;
             z-index: 2;
+            animation: glow-soft 6s ease-in-out infinite;
         }
 
         .schedule {
@@ -1386,7 +1490,7 @@
             font-weight: 300;
             font-size: 1rem;
             transition: all 0.5s;
-            animation: fadeInUp 1s ease-out;
+            animation: fadeInUp 1s ease-out, float 10s ease-in-out infinite;
             animation-fill-mode: both;
             letter-spacing: 1px;
         }
@@ -1413,7 +1517,7 @@
             font-weight: 300;
             font-size: 0.95rem;
             border: 1px solid rgba(37,211,102,0.25);
-            animation: aura-glow 4s ease-in-out infinite;
+            animation: aura-glow 4s ease-in-out infinite, pulse-scale 5s ease-in-out infinite;
             letter-spacing: 1px;
         }
 
@@ -1448,14 +1552,14 @@
             width: 100%;
             height: 1px;
             background: linear-gradient(90deg, transparent, #7bd8ff, #ac94ff, transparent);
-            animation: aura-flow 10s linear infinite;
+            animation: aura-flow 10s linear infinite, slide-bounce 12s ease-in-out infinite;
         }
 
         footer p {
             font-size: 1rem;
             font-weight: 300;
             letter-spacing: 1.5px;
-            animation: aura-float 8s ease-in-out infinite;
+            animation: aura-float 8s ease-in-out infinite, glow-soft 5s ease-in-out infinite;
             position: relative;
             z-index: 2;
         }
@@ -1850,7 +1954,7 @@
         // Animation parallaxe pour les éléments d'aura
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
-            const auraElements = document.querySelectorAll('.aura, .aura-cloud, .ninja-weapon');
+            const auraElements = document.querySelectorAll('.aura, .aura-cloud, .ninja-weapon, .aura-line, .aura-particle');
             auraElements.forEach((el, index) => {
                 const speed = 0.05 + (index * 0.01);
                 el.style.transform = `translateY(${scrolled * speed}px)`;
