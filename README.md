@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -178,12 +178,6 @@
         @keyframes pulse-scale {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
-        }
-
-        @keyframes rotate-scale {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.2); }
-            100% { transform: rotate(360deg) scale(1); }
         }
 
         @keyframes slide-bounce {
@@ -508,7 +502,7 @@
             );
             pointer-events: none;
             z-index: 0;
-            animation: light-ray 50s linear infinite, rotate3d 60s ease-in-out infinite;
+            animation: light-ray 50s linear infinite;
         }
 
         header {
@@ -1046,7 +1040,7 @@
             display: inline-block;
             opacity: 0.9;
             filter: drop-shadow(0 0 15px rgba(123,216,255,0.2));
-            animation: aura-float 7s ease-in-out infinite, spin-slow 20s linear infinite;
+            animation: aura-float 7s ease-in-out infinite;
         }
 
         .contact-card h3 {
@@ -1202,7 +1196,7 @@
         .whatsapp-icon-large {
             font-size: 5rem;
             opacity: 0.9;
-            animation: aura-float 6s ease-in-out infinite, spin-slow 30s linear infinite;
+            animation: aura-float 6s ease-in-out infinite;
             filter: drop-shadow(0 0 25px rgba(37,211,102,0.3));
         }
 
@@ -1228,6 +1222,75 @@
             font-weight: 300;
             letter-spacing: 1px;
             font-size: 1.2rem;
+        }
+
+        .messaging-platforms {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .platform-card {
+            flex: 1;
+            background: rgba(20,25,40,0.3);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(30,35,50,0.4);
+        }
+
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .platform-card h4 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .platform-card p {
+            color: #b0c4de;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .platform-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background: rgba(123,216,255,0.1);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(123,216,255,0.2);
+            transition: all 0.3s;
+        }
+
+        .platform-link:hover {
+            background: rgba(172,148,255,0.2);
+            border-color: rgba(172,148,255,0.4);
+            transform: translateY(-2px);
+        }
+
+        .messaging-separator {
+            text-align: center;
+            margin: 1rem 0;
+            color: #b0c4de;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
         }
 
         .form-grid {
@@ -1296,12 +1359,11 @@
             grid-column: 1 / -1;
         }
 
-        .whatsapp-btn {
+        .whatsapp-btn, .messenger-btn {
             width: 100%;
             padding: 16px 45px;
-            background: rgba(37,211,102,0.1);
             color: #ffffff;
-            border: 1px solid rgba(37,211,102,0.25);
+            border: none;
             border-radius: 40px;
             font-size: 1.2rem;
             font-weight: 300;
@@ -1316,23 +1378,33 @@
             position: relative;
             overflow: hidden;
             z-index: 2;
-            animation: aura-glow 5s ease-in-out infinite, pulse-scale 4s ease-in-out infinite;
+            animation: pulse-scale 4s ease-in-out infinite;
         }
 
-        .whatsapp-btn::before {
+        .whatsapp-btn {
+            background: rgba(37,211,102,0.1);
+            border: 1px solid rgba(37,211,102,0.25);
+        }
+
+        .messenger-btn {
+            background: rgba(0,132,255,0.1);
+            border: 1px solid rgba(0,132,255,0.25);
+        }
+
+        .whatsapp-btn::before, .messenger-btn::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(37,211,102,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
             animation: aura-spiral 25s linear infinite;
             opacity: 0;
             transition: opacity 0.6s;
         }
 
-        .whatsapp-btn::after {
+        .whatsapp-btn::after, .messenger-btn::after {
             content: '';
             position: absolute;
             top: 0;
@@ -1350,11 +1422,18 @@
             box-shadow: 0 25px 35px -15px rgba(37,211,102,0.2);
         }
 
-        .whatsapp-btn:hover::before {
+        .messenger-btn:hover {
+            background: rgba(0,132,255,0.15);
+            border-color: rgba(0,132,255,0.4);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 35px -15px rgba(0,132,255,0.2);
+        }
+
+        .whatsapp-btn:hover::before, .messenger-btn:hover::before {
             opacity: 1;
         }
 
-        .whatsapp-btn:hover::after {
+        .whatsapp-btn:hover::after, .messenger-btn:hover::after {
             left: 100%;
         }
 
@@ -1608,12 +1687,40 @@
             <div class="whatsapp-container">
                 <div class="whatsapp-header">
                     <span class="whatsapp-icon-large">📱</span>
-                    <h3>WhatsApp <span>Direct</span></h3>
+                    <h3>Messagerie <span>Directe</span></h3>
                 </div>
                 
                 <p class="whatsapp-subtitle">
-                    Envoyez-moi un message instantanément
+                    Envoyez-moi un message instantanément sur la plateforme de votre choix
                 </p>
+
+                <div class="messaging-platforms">
+                    <!-- WhatsApp Card -->
+                    <div class="platform-card">
+                        <div class="platform-icon">📱</div>
+                        <h4>WhatsApp</h4>
+                        <p>+261 38 62 876 80</p>
+                        <a href="https://wa.me/261386287680?text=Bonjour%20Matthieu%2C%20je%20souhaite%20vous%20contacter%20pour%20un%20projet" 
+                           class="platform-link" 
+                           target="_blank">
+                            Envoyer sur WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- Facebook Messenger Card -->
+                    <div class="platform-card">
+                        <div class="platform-icon">💬</div>
+                        <h4>Facebook Messenger</h4>
+                        <p>RATIANARIVO Mirindra Matthieu</p>
+                        <a href="https://m.me/ratianarivo.mirindra" 
+                           class="platform-link" 
+                           target="_blank">
+                            Envoyer sur Messenger
+                        </a>
+                    </div>
+                </div>
+
+                <div class="messaging-separator">— ou envoyez un message personnalisé —</div>
 
                 <div class="form-grid">
                     <div class="form-group">
@@ -1638,11 +1745,18 @@
                     </div>
                 </div>
 
-                <button class="whatsapp-btn" id="sendWhatsAppBtn">
-                    <span>📤</span>
-                    Envoyer sur WhatsApp
-                    <span>→</span>
-                </button>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button class="whatsapp-btn" id="sendWhatsAppBtn">
+                        <span>📤</span>
+                        WhatsApp
+                        <span>→</span>
+                    </button>
+                    <button class="messenger-btn" id="sendMessengerBtn">
+                        <span>💬</span>
+                        Messenger
+                        <span>→</span>
+                    </button>
+                </div>
 
                 <div class="availability-info">
                     <div class="schedule">
@@ -1696,6 +1810,35 @@
             texteMessage += `%0A📝 *Message :*%0A${message}`;
             
             window.open(`https://wa.me/${whatsappNumber}?text=${texteMessage}`, '_blank');
+        });
+
+        document.getElementById('sendMessengerBtn').addEventListener('click', function() {
+            var nom = document.getElementById('nom').value.trim();
+            var telephone = document.getElementById('telephone').value.trim();
+            var message = document.getElementById('message').value.trim();
+            
+            if (!nom) {
+                alert('Veuillez entrer votre nom');
+                return;
+            }
+            
+            if (!message) {
+                alert('Veuillez entrer votre message');
+                return;
+            }
+            
+            // Construction du message pour Messenger
+            var texteMessage = `Bonjour Matthieu, je suis ${nom}.`;
+            
+            if (telephone) {
+                texteMessage += ` Mon téléphone: ${telephone}.`;
+            }
+            
+            texteMessage += ` ${message}`;
+            
+            // Redirection vers Messenger avec le profil Facebook
+            // Note: L'utilisateur devra être connecté à Facebook
+            window.open(`https://m.me/ratianarivo.mirindra?text=${encodeURIComponent(texteMessage)}`, '_blank');
         });
 
         function updateAvailability() {
