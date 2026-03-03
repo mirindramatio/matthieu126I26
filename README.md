@@ -17,7 +17,6 @@
             color: #e0f2fe;
             background: linear-gradient(135deg, #030712 0%, #0a0f1a 50%, #0f1a2f 100%);
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         .container {
@@ -104,17 +103,6 @@
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
-        }
-
-        @keyframes mist-flow {
-            0% { transform: translateX(0) translateY(0); opacity: 0.15; }
-            50% { transform: translateX(20px) translateY(-8px); opacity: 0.25; }
-            100% { transform: translateX(0) translateY(0); opacity: 0.15; }
-        }
-
-        @keyframes mist-pulse {
-            0%, 100% { opacity: 0.1; filter: blur(25px); }
-            50% { opacity: 0.25; filter: blur(40px); }
         }
 
         @keyframes glow-soft {
@@ -247,7 +235,7 @@
             100% { transform: translateX(0) translateY(0); }
         }
 
-        /* ===== ÉLÉMENTS D'AURA (UNIQUEMENT EN ARRIÈRE-PLAN) ===== */
+        /* ===== ÉLÉMENTS D'AURA ===== */
         .aura {
             position: fixed;
             pointer-events: none;
@@ -325,7 +313,6 @@
         .aura-line-3 { left: 45%; animation: aura-float 24s ease-in-out infinite, shake 22s ease-in-out infinite; }
         .aura-line-4 { right: 35%; animation: aura-float 18s ease-in-out infinite reverse, glitch 12s ease-in-out infinite; }
 
-        /* Nuages d'aura */
         .aura-cloud {
             position: fixed;
             background: rgba(255,255,255,0.02);
@@ -371,7 +358,6 @@
             animation-delay: 15s;
         }
 
-        /* ===== ARMES NINJA (KATANAS ET SHURIKENS) ===== */
         .ninja-weapon {
             position: fixed;
             font-size: 2rem;
@@ -381,7 +367,6 @@
             opacity: 0.25;
         }
 
-        /* Katanas */
         .katana-1 {
             top: 15%;
             left: 8%;
@@ -424,7 +409,6 @@
             animation: katana-swing 28s ease-in-out infinite reverse, glow-soft 10s ease-in-out infinite 5s;
         }
 
-        /* Shurikens */
         .shuriken-1 {
             top: 10%;
             right: 15%;
@@ -481,7 +465,6 @@
             animation: shuriken-spin 24s linear infinite, shake 8s ease-in-out infinite;
         }
 
-        /* Particules d'aura */
         .aura-particle {
             position: fixed;
             width: 5px;
@@ -507,7 +490,6 @@
         .aura-particle-11 { top: 23%; left: 93%; animation-delay: 20s; }
         .aura-particle-12 { top: 73%; left: 13%; animation-delay: 22s; }
 
-        /* Rayons de lumière */
         .aura-ray {
             position: fixed;
             width: 100%;
@@ -529,7 +511,6 @@
             animation: light-ray 50s linear infinite, rotate3d 60s ease-in-out infinite;
         }
 
-        /* ===== HEADER AVEC AURA ===== */
         header {
             background: rgba(3, 7, 18, 0.6);
             backdrop-filter: blur(20px);
@@ -660,7 +641,6 @@
             opacity: 1;
         }
 
-        /* ===== SECTION ACCUEIL AVEC AURA ===== */
         #accueil {
             min-height: 100vh;
             display: flex;
@@ -757,7 +737,6 @@
             left: 100%;
         }
 
-        /* ===== SECTION À PROPOS - BLEU CIEL AVEC AURA ===== */
         #apropos {
             min-height: 100vh;
             display: flex;
@@ -787,7 +766,6 @@
             padding-top: 2rem;
         }
 
-        /* Texte à gauche */
         .apropos-text {
             animation: fadeInLeft 1.3s ease-out;
             background: rgba(255, 255, 255, 0.2);
@@ -927,7 +905,6 @@
             opacity: 1;
         }
 
-        /* Photo à droite - Format rectangulaire, SANS AUCUN BROUILLARD */
         .apropos-image {
             position: relative;
             display: flex;
@@ -946,11 +923,7 @@
             background: rgba(255,255,255,0.15);
             box-shadow: 0 30px 50px -20px rgba(0,0,0,0.3);
             z-index: 2;
-            /* Suppression de l'animation float qui pouvait donner un effet de flou */
         }
-
-        /* SIMPLIFICATION - Pas de cercles d'aura autour de la photo */
-        /* Pas de photo-rays non plus pour éviter tout flou */
 
         .apropos-image img {
             width: 100%;
@@ -958,21 +931,17 @@
             border-radius: 10px;
             transition: transform 0.3s ease;
             display: block;
-            /* Aucun filtre - image originale */
             opacity: 1;
             position: relative;
             z-index: 3;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            /* Suppression de toute animation sur l'image elle-même */
         }
 
         .apropos-image img:hover {
             transform: scale(1.02);
-            /* Pas de filtre au survol non plus */
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
-        /* ===== SECTION CONTACT AVEC AURA - ICONES PLUS PETITES ===== */
         #contact {
             min-height: 100vh;
             display: flex;
@@ -1188,7 +1157,6 @@
             opacity: 1;
         }
 
-        /* ===== SECTION WHATSAPP (INCHANGÉE) ===== */
         .whatsapp-section {
             padding: 120px 0;
             background: linear-gradient(135deg, 
@@ -1453,7 +1421,6 @@
             letter-spacing: 1px;
         }
 
-        /* ===== FOOTER AVEC AURA ===== */
         footer {
             background: rgba(3, 7, 18, 0.7);
             color: #b0c4de;
@@ -1495,106 +1462,9 @@
             position: relative;
             z-index: 2;
         }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .apropos-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .apropos-text {
-                text-align: center;
-                grid-column: 1;
-                padding: 2.5rem;
-            }
-
-            .apropos-text h2::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .apropos-image {
-                grid-column: 1;
-                order: -1;
-                margin-top: 0;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .katana-1, .katana-2, .katana-3, .katana-4, .katana-5, .katana-6,
-            .shuriken-1, .shuriken-2, .shuriken-3, .shuriken-4, .shuriken-5, 
-            .shuriken-6, .shuriken-7, .shuriken-8 {
-                opacity: 0.15;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-
-            .nav-links {
-                gap: 2rem;
-            }
-
-            .hero h1 {
-                font-size: 2.4rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .whatsapp-container {
-                padding: 2.5rem;
-                margin: 0 20px;
-            }
-
-            .schedule {
-                gap: 1.5rem;
-            }
-
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .social-link {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .apropos-text h2 {
-                font-size: 2.2rem;
-            }
-
-            .whatsapp-header h3 {
-                font-size: 2rem;
-            }
-
-            .time-badge {
-                width: 100%;
-                justify-content: center;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Éléments d'aura multiples -->
     <div class="aura aura-1"></div>
     <div class="aura aura-2"></div>
     <div class="aura aura-3"></div>
@@ -1602,19 +1472,16 @@
     <div class="aura aura-5"></div>
     <div class="aura aura-6"></div>
     
-    <!-- Lignes d'aura -->
     <div class="aura-line aura-line-1"></div>
     <div class="aura-line aura-line-2"></div>
     <div class="aura-line aura-line-3"></div>
     <div class="aura-line aura-line-4"></div>
     
-    <!-- Nuages d'aura -->
     <div class="aura-cloud aura-cloud-1"></div>
     <div class="aura-cloud aura-cloud-2"></div>
     <div class="aura-cloud aura-cloud-3"></div>
     <div class="aura-cloud aura-cloud-4"></div>
     
-    <!-- KATANAS -->
     <div class="ninja-weapon katana-1">⚔️</div>
     <div class="ninja-weapon katana-2">⚔️</div>
     <div class="ninja-weapon katana-3">⚔️</div>
@@ -1622,7 +1489,6 @@
     <div class="ninja-weapon katana-5">⚔️</div>
     <div class="ninja-weapon katana-6">⚔️</div>
     
-    <!-- SHURIKENS -->
     <div class="ninja-weapon shuriken-1">✴️</div>
     <div class="ninja-weapon shuriken-2">✴️</div>
     <div class="ninja-weapon shuriken-3">✴️</div>
@@ -1632,7 +1498,6 @@
     <div class="ninja-weapon shuriken-7">✴️</div>
     <div class="ninja-weapon shuriken-8">✴️</div>
     
-    <!-- Particules d'aura -->
     <div class="aura-particle aura-particle-1"></div>
     <div class="aura-particle aura-particle-2"></div>
     <div class="aura-particle aura-particle-3"></div>
@@ -1646,7 +1511,6 @@
     <div class="aura-particle aura-particle-11"></div>
     <div class="aura-particle aura-particle-12"></div>
     
-    <!-- Rayons de lumière -->
     <div class="aura-ray"></div>
 
     <header>
@@ -1670,7 +1534,6 @@
 
     <section id="apropos">
         <div class="container apropos-content">
-            <!-- Texte à gauche -->
             <div class="apropos-text">
                 <h2>À propos de moi</h2>
                 <p>Je suis un développeur passionné par la création de sites web. J'aime transformer des idées créatives en solutions numériques fonctionnelles. J'ai acquis des bases solides en programmation (HTML, CSS, JavaScript).</p>
@@ -1684,7 +1547,6 @@
                     <span class="skill">Responsive</span>
                 </div>
             </div>
-            <!-- Photo à droite - SANS AUCUN BROUILLARD NI EFFET DE FLOU -->
             <div class="apropos-image">
                 <div class="image-frame">
                     <img src="https://scontent.ftnr2-2.fna.fbcdn.net/v/t39.30808-6/642754626_122112963513211419_7763551596132436351_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=HrPMD1Mzk-wQ7kNvwF-W0Kk&_nc_oc=AdmitmpVlD_NkLZbjv5bb1BdGCCLKrDWIu8jwSkutlrW38sKkCh-4igqUNpNQk8v2sg&_nc_zt=23&_nc_ht=scontent.ftnr2-2.fna&_nc_gid=UrnADD8nIJ14FGwl_Mt82Q&_nc_ss=8&oh=00_AfxextLBeI-e-uEMJr1xXOL4FM1WFzyiLwUla6pesQhiMA&oe=69AAF757" alt="Photo de profil">
@@ -1758,7 +1620,7 @@
                         <label>
                             <span>👤</span> Votre nom
                         </label>
-                        <input type="text" id="nom" placeholder="Ex: Jean Dupont">
+                        <input type="text" id="nom" placeholder="Ex: Everson Malcolm">
                     </div>
 
                     <div class="form-group">
@@ -1808,7 +1670,6 @@
     </footer>
 
     <script>
-        // WhatsApp direct
         document.getElementById('sendWhatsAppBtn').addEventListener('click', function() {
             var nom = document.getElementById('nom').value.trim();
             var telephone = document.getElementById('telephone').value.trim();
@@ -1837,7 +1698,6 @@
             window.open(`https://wa.me/${whatsappNumber}?text=${texteMessage}`, '_blank');
         });
 
-        // Statut de disponibilité
         function updateAvailability() {
             var now = new Date();
             var hour = now.getHours();
@@ -1865,7 +1725,6 @@
             }
         }
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1879,7 +1738,6 @@
             });
         });
 
-        // Animation parallaxe pour les éléments d'aura
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
             const auraElements = document.querySelectorAll('.aura, .aura-cloud, .ninja-weapon, .aura-line, .aura-particle');
