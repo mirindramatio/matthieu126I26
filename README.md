@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -109,6 +109,21 @@
                 transform: scale(1.05);
             }
             100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes clockPulse {
+            0% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 0.7;
                 transform: scale(1);
             }
         }
@@ -697,16 +712,57 @@
             color: #075E54;
         }
 
-        .whatsapp-number-badge {
-            display: inline-block;
-            background: #e8f5e9;
+        .availability-badge {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
             color: #075E54;
-            padding: 8px 20px;
+            padding: 15px 20px;
             border-radius: 50px;
             font-weight: 600;
-            margin-top: 10px;
+            margin-top: 15px;
             border: 2px solid #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
             animation: pulse 3s infinite;
+        }
+
+        .availability-badge span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+        }
+
+        .availability-badge .clock-icon {
+            animation: clockPulse 2s infinite;
+        }
+
+        .time-slot {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            color: #075E54;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .time-slot.morning {
+            border-left: 4px solid #FFA500;
+        }
+
+        .time-slot.afternoon {
+            border-left: 4px solid #2196F3;
+        }
+
+        .dispo-title {
+            font-size: 1.2rem;
+            color: #075E54;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
         }
 
         /* Footer */
@@ -830,6 +886,11 @@
             .whatsapp-header h3 {
                 font-size: 1.6rem;
             }
+
+            .availability-badge {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -946,7 +1007,7 @@
         <div class="wave-bg"></div>
     </section>
 
-    <!-- Formulaire WhatsApp direct -->
+    <!-- Formulaire WhatsApp direct avec horaires -->
     <section class="whatsapp-form-section">
         <div class="container">
             <div class="whatsapp-form-container">
@@ -991,9 +1052,31 @@
 
                     <div class="whatsapp-info">
                         <p>📱 <strong>Mon numéro WhatsApp :</strong> +261 38 62 876 80</p>
-                        <p>⏱️ Réponse généralement sous <strong>24h</strong></p>
-                        <div class="whatsapp-number-badge">
-                            ✅ Disponible sur WhatsApp
+                        
+                        <!-- Nouveau badge de disponibilité avec horaires -->
+                        <div class="availability-badge">
+                            <div class="dispo-title">
+                                <span class="clock-icon">⏰</span>
+                                <strong>Toujours disponible aux horaires :</strong>
+                            </div>
+                            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                                <span class="time-slot morning">
+                                    <span>🌅</span> MATIN : 8H - 12H
+                                </span>
+                                <span class="time-slot afternoon">
+                                    <span>☀️</span> MIDI : 14H - 18H
+                                </span>
+                            </div>
+                            <div style="margin-top: 10px; font-size: 0.95rem; color: #075E54;">
+                                ⚡ Réponse rapide garantie pendant ces créneaux
+                            </div>
+                        </div>
+
+                        <!-- Message de disponibilité -->
+                        <div style="margin-top: 15px; background: #fff3e0; padding: 10px; border-radius: 10px; border-left: 4px solid #FFA500;">
+                            <p style="margin: 0; color: #BF360C;">
+                                <span>💬</span> Je réponds généralement dans l'heure pendant mes horaires de disponibilité
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1066,6 +1149,52 @@
                 messageField.value = 'Bonjour Matthieu, je souhaite vous contacter pour un projet.';
             }
         });
+
+        // Afficher un message si en dehors des heures de disponibilité (optionnel)
+        function checkAvailability() {
+            var now = new Date();
+            var hour = now.getHours();
+            var minutes = now.getMinutes();
+            var currentTime = hour + minutes/60;
+            
+            var morningStart = 8;
+            var morningEnd = 12;
+            var afternoonStart = 14;
+            var afternoonEnd = 18;
+            
+            var isAvailable = (currentTime >= morningStart && currentTime < morningEnd) || 
+                             (currentTime >= afternoonStart && currentTime < afternoonEnd);
+            
+            var availabilityElement = document.querySelector('.availability-badge');
+            
+            if (availabilityElement) {
+                if (isAvailable) {
+                    // Je suis disponible maintenant
+                    availabilityElement.style.background = 'linear-gradient(135deg, #e8f5e9, #a5d6a7)';
+                    availabilityElement.style.border = '3px solid #4CAF50';
+                    
+                    // Ajouter une indication de disponibilité immédiate
+                    var dispoNow = document.createElement('div');
+                    dispoNow.style.marginTop = '10px';
+                    dispoNow.style.color = '#2E7D32';
+                    dispoNow.style.fontWeight = 'bold';
+                    dispoNow.innerHTML = '🟢 DISPONIBLE MAINTENANT';
+                    
+                    // Ne pas dupliquer
+                    if (!document.querySelector('.dispo-now')) {
+                        dispoNow.className = 'dispo-now';
+                        availabilityElement.appendChild(dispoNow);
+                    }
+                } else {
+                    // Je ne suis pas disponible maintenant
+                    availabilityElement.style.background = 'linear-gradient(135deg, #fff3e0, #ffe0b2)';
+                    availabilityElement.style.border = '3px solid #FF9800';
+                }
+            }
+        }
+        
+        // Appeler la fonction au chargement
+        document.addEventListener('DOMContentLoaded', checkAvailability);
     </script>
 </body>
 </html>
