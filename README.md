@@ -617,9 +617,10 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 5rem;
-            align-items: center;
+            align-items: start; /* Aligné en haut au lieu de center */
             position: relative;
             z-index: 10;
+            padding-top: 2rem; /* Ajout d'un padding pour remonter la photo */
         }
 
         /* Texte à gauche */
@@ -760,51 +761,52 @@
             opacity: 1;
         }
 
-        /* Photo à droite */
+        /* Photo à droite - Format rectangulaire comme avant */
         .apropos-image {
             position: relative;
             display: flex;
             justify-content: center;
             animation: fadeInRight 1.3s ease-out;
             grid-column: 2;
+            margin-top: -20px; /* Remonte la photo */
         }
 
         .image-frame {
             position: relative;
             width: 100%;
-            max-width: 500px;
-            aspect-ratio: 1/1;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            padding: 10px;
+            max-width: 400px; /* Largeur fixe pour format rectangulaire */
+            border-radius: 15px; /* Coins arrondis normaux, pas de forme bizarre */
+            padding: 8px;
             background: rgba(255,255,255,0.25);
             backdrop-filter: blur(10px);
             box-shadow: 0 40px 60px -25px rgba(0,0,0,0.3);
             animation: aura-float 10s ease-in-out infinite;
             z-index: 2;
+            aspect-ratio: auto; /* Pas de ratio forcé, laisse l'image garder ses proportions */
         }
 
-        /* Cercles d'aura autour de la photo */
+        /* Cercles d'aura autour de la photo - adaptés au rectangle */
         .aura-circle {
             position: absolute;
             border: 1px solid rgba(255,255,255,0.25);
-            border-radius: inherit;
+            border-radius: 15px; /* Même forme que l'image */
             animation: aura-spiral 25s linear infinite;
         }
 
         .aura-circle-1 {
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
             border-width: 1px;
             border-style: dashed;
         }
 
         .aura-circle-2 {
-            top: -35px;
-            left: -35px;
-            right: -35px;
-            bottom: -35px;
+            top: -25px;
+            left: -25px;
+            right: -25px;
+            bottom: -25px;
             border-width: 1px;
             border-style: dotted;
             animation-direction: reverse;
@@ -812,37 +814,14 @@
         }
 
         .aura-circle-3 {
-            top: -50px;
-            left: -50px;
-            right: -50px;
-            bottom: -50px;
+            top: -35px;
+            left: -35px;
+            right: -35px;
+            bottom: -35px;
             border-width: 1px;
             border-style: solid;
             opacity: 0.15;
             animation-duration: 35s;
-        }
-
-        .aura-circle-4 {
-            top: -65px;
-            left: -65px;
-            right: -65px;
-            bottom: -65px;
-            border-width: 2px;
-            border-style: double;
-            opacity: 0.1;
-            animation-duration: 40s;
-            animation-direction: reverse;
-        }
-
-        .aura-circle-5 {
-            top: -80px;
-            left: -80px;
-            right: -80px;
-            bottom: -80px;
-            border-width: 1px;
-            border-style: dashed;
-            opacity: 0.08;
-            animation-duration: 45s;
         }
 
         /* Rayons de lumière derrière la photo */
@@ -851,8 +830,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 250%;
-            height: 250%;
+            width: 200%;
+            height: 200%;
             background: conic-gradient(
                 from 0deg,
                 transparent,
@@ -877,23 +856,22 @@
 
         .apropos-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: inherit;
+            height: auto; /* Hauteur automatique pour garder les proportions */
+            border-radius: 10px; /* Coins légèrement arrondis */
             transition: all 0.6s;
             display: block;
-            filter: brightness(1.05) contrast(1.02);
+            filter: brightness(1.1) contrast(1.05) saturate(1.1); /* Plus clair */
             opacity: 1;
             position: relative;
             z-index: 3;
             animation: aura-glow 6s ease-in-out infinite;
-            box-shadow: 0 0 30px rgba(255,255,255,0.1);
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
         }
 
         .apropos-image img:hover {
             transform: scale(1.03);
-            filter: brightness(1.1);
-            box-shadow: 0 0 40px rgba(255,255,255,0.2);
+            filter: brightness(1.15) contrast(1.08); /* Encore plus clair au survol */
+            box-shadow: 0 0 40px rgba(255,255,255,0.3);
         }
 
         /* ===== SECTION CONTACT AVEC AURA - ICONES PLUS PETITES ===== */
@@ -996,7 +974,7 @@
         }
 
         .contact-icon {
-            font-size: 2.8rem; /* Plus petit qu'avant */
+            font-size: 2.8rem; /* Plus petit */
             margin-bottom: 1.2rem;
             display: inline-block;
             opacity: 0.9;
@@ -1433,6 +1411,7 @@
             .apropos-image {
                 grid-column: 1;
                 order: -1;
+                margin-top: 0;
             }
 
             .hero h1 {
@@ -1583,14 +1562,12 @@
                     <span class="skill">Responsive</span>
                 </div>
             </div>
-            <!-- Photo à droite -->
+            <!-- Photo à droite - Format rectangulaire et plus claire -->
             <div class="apropos-image">
                 <div class="image-frame">
                     <div class="aura-circle aura-circle-1"></div>
                     <div class="aura-circle aura-circle-2"></div>
                     <div class="aura-circle aura-circle-3"></div>
-                    <div class="aura-circle aura-circle-4"></div>
-                    <div class="aura-circle aura-circle-5"></div>
                     <div class="photo-rays"></div>
                     <img src="https://scontent.ftnr2-2.fna.fbcdn.net/v/t39.30808-6/642754626_122112963513211419_7763551596132436351_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=HrPMD1Mzk-wQ7kNvwF-W0Kk&_nc_oc=AdmitmpVlD_NkLZbjv5bb1BdGCCLKrDWIu8jwSkutlrW38sKkCh-4igqUNpNQk8v2sg&_nc_zt=23&_nc_ht=scontent.ftnr2-2.fna&_nc_gid=UrnADD8nIJ14FGwl_Mt82Q&_nc_ss=8&oh=00_AfxextLBeI-e-uEMJr1xXOL4FM1WFzyiLwUla6pesQhiMA&oe=69AAF757" alt="Photo de profil">
                 </div>
