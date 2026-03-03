@@ -622,6 +622,7 @@
             z-index: 10;
         }
 
+        /* Texte à gauche */
         .apropos-text {
             animation: fadeInLeft 1.3s ease-out;
             background: rgba(255, 255, 255, 0.2);
@@ -632,6 +633,7 @@
             box-shadow: 0 40px 60px -25px rgba(0,0,0,0.3);
             position: relative;
             overflow: hidden;
+            grid-column: 1;
         }
 
         .apropos-text::before {
@@ -758,11 +760,13 @@
             opacity: 1;
         }
 
+        /* Photo à droite */
         .apropos-image {
             position: relative;
             display: flex;
             justify-content: center;
             animation: fadeInRight 1.3s ease-out;
+            grid-column: 2;
         }
 
         .image-frame {
@@ -878,69 +882,21 @@
             border-radius: inherit;
             transition: all 0.6s;
             display: block;
-            filter: brightness(1.08) contrast(1.03);
-            opacity: 0.98;
+            filter: brightness(1.05) contrast(1.02);
+            opacity: 1;
             position: relative;
             z-index: 3;
             animation: aura-glow 6s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(255,255,255,0.1);
         }
 
         .apropos-image img:hover {
-            transform: scale(1.04);
-            opacity: 1;
-            filter: brightness(1.12);
+            transform: scale(1.03);
+            filter: brightness(1.1);
             box-shadow: 0 0 40px rgba(255,255,255,0.2);
         }
 
-        /* Badges avec aura */
-        .badge {
-            position: absolute;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(12px);
-            padding: 10px 25px;
-            border-radius: 40px;
-            color: #0f172a;
-            font-weight: 400;
-            font-size: 0.95rem;
-            border: 1px solid rgba(255,255,255,0.4);
-            letter-spacing: 1.5px;
-            animation: aura-float 8s ease-in-out infinite;
-            z-index: 5;
-            box-shadow: 0 15px 25px -10px rgba(0,0,0,0.15);
-            white-space: nowrap;
-        }
-
-        .badge-1 {
-            top: 5%;
-            right: -5px;
-            animation-delay: 0s;
-        }
-
-        .badge-2 {
-            bottom: 10%;
-            left: -5px;
-            animation-delay: 3s;
-        }
-
-        .badge-3 {
-            top: 35%;
-            left: -15px;
-            animation-delay: 6s;
-        }
-
-        .badge-4 {
-            bottom: 35%;
-            right: -10px;
-            animation-delay: 9s;
-        }
-
-        .badge:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.08);
-            border-color: rgba(255,255,255,0.6);
-        }
-
-        /* ===== SECTION CONTACT AVEC AURA ===== */
+        /* ===== SECTION CONTACT AVEC AURA - ICONES PLUS PETITES ===== */
         #contact {
             min-height: 100vh;
             display: flex;
@@ -977,16 +933,16 @@
 
         .contact-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin: 3.5rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
 
         .contact-card {
             background: rgba(20,25,40,0.35);
             backdrop-filter: blur(15px);
-            padding: 3rem 2rem;
-            border-radius: 40px;
+            padding: 2rem 1.5rem;
+            border-radius: 30px;
             border: 1px solid rgba(123,216,255,0.15);
             transition: all 0.6s;
             animation: fadeInUp 1.2s ease-out;
@@ -1025,7 +981,7 @@
         }
 
         .contact-card:hover {
-            transform: translateY(-12px) scale(1.02);
+            transform: translateY(-10px) scale(1.02);
             border-color: rgba(172,148,255,0.3);
             background: rgba(25,30,45,0.45);
             box-shadow: 0 40px 50px -20px rgba(0,0,0,0.6);
@@ -1040,38 +996,38 @@
         }
 
         .contact-icon {
-            font-size: 4rem;
-            margin-bottom: 1.8rem;
+            font-size: 2.8rem; /* Plus petit qu'avant */
+            margin-bottom: 1.2rem;
             display: inline-block;
             opacity: 0.9;
-            filter: drop-shadow(0 0 20px rgba(123,216,255,0.3));
+            filter: drop-shadow(0 0 15px rgba(123,216,255,0.2));
             animation: aura-float 7s ease-in-out infinite;
         }
 
         .contact-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: #ffffff;
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.8rem;
             font-weight: 300;
             letter-spacing: 1.5px;
         }
 
         .contact-card p {
             color: #b0c4de;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem; /* Plus petit */
             font-weight: 300;
         }
 
         .contact-link {
             display: inline-block;
-            padding: 14px 36px;
+            padding: 10px 28px; /* Plus petit */
             background: rgba(123,216,255,0.06);
             color: #b0c4de;
             text-decoration: none;
-            border-radius: 40px;
+            border-radius: 30px;
             font-weight: 300;
-            font-size: 1rem;
+            font-size: 0.9rem; /* Plus petit */
             border: 1px solid rgba(123,216,255,0.2);
             transition: all 0.5s;
             position: relative;
@@ -1103,20 +1059,20 @@
 
         .social-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             justify-content: center;
-            margin-top: 4.5rem;
+            margin-top: 3.5rem;
         }
 
         .social-link {
             display: inline-flex;
             align-items: center;
-            gap: 1.2rem;
-            padding: 14px 40px;
+            gap: 0.8rem;
+            padding: 12px 32px; /* Plus petit */
             background: rgba(20,25,40,0.4);
             color: #b0c4de;
             text-decoration: none;
-            border-radius: 40px;
+            border-radius: 30px;
             border: 1px solid rgba(123,216,255,0.15);
             transition: all 0.5s;
             font-weight: 300;
@@ -1124,6 +1080,7 @@
             position: relative;
             overflow: hidden;
             animation: fadeInUp 1.5s ease-out 0.8s both;
+            font-size: 0.95rem; /* Plus petit */
         }
 
         .social-link::before {
@@ -1150,7 +1107,7 @@
             opacity: 1;
         }
 
-        /* ===== SECTION WHATSAPP AVEC AURA ===== */
+        /* ===== SECTION WHATSAPP (INCHANGÉE) ===== */
         .whatsapp-section {
             padding: 120px 0;
             background: linear-gradient(135deg, 
@@ -1464,7 +1421,7 @@
 
             .apropos-text {
                 text-align: center;
-                order: 2;
+                grid-column: 1;
                 padding: 2.5rem;
             }
 
@@ -1474,15 +1431,12 @@
             }
 
             .apropos-image {
-                order: 1;
+                grid-column: 1;
+                order: -1;
             }
 
             .hero h1 {
                 font-size: 3rem;
-            }
-
-            .badge-1, .badge-2, .badge-3, .badge-4 {
-                display: none;
             }
         }
 
@@ -1615,6 +1569,7 @@
 
     <section id="apropos">
         <div class="container apropos-content">
+            <!-- Texte à gauche -->
             <div class="apropos-text">
                 <h2>À propos de moi</h2>
                 <p>Je suis un développeur passionné par la création de sites web. J'aime transformer des idées créatives en solutions numériques fonctionnelles. J'ai acquis des bases solides en programmation (HTML, CSS, JavaScript).</p>
@@ -1628,6 +1583,7 @@
                     <span class="skill">Responsive</span>
                 </div>
             </div>
+            <!-- Photo à droite -->
             <div class="apropos-image">
                 <div class="image-frame">
                     <div class="aura-circle aura-circle-1"></div>
@@ -1638,10 +1594,6 @@
                     <div class="photo-rays"></div>
                     <img src="https://scontent.ftnr2-2.fna.fbcdn.net/v/t39.30808-6/642754626_122112963513211419_7763551596132436351_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=HrPMD1Mzk-wQ7kNvwF-W0Kk&_nc_oc=AdmitmpVlD_NkLZbjv5bb1BdGCCLKrDWIu8jwSkutlrW38sKkCh-4igqUNpNQk8v2sg&_nc_zt=23&_nc_ht=scontent.ftnr2-2.fna&_nc_gid=UrnADD8nIJ14FGwl_Mt82Q&_nc_ss=8&oh=00_AfxextLBeI-e-uEMJr1xXOL4FM1WFzyiLwUla6pesQhiMA&oe=69AAF757" alt="Photo de profil">
                 </div>
-                <div class="badge badge-1">開発者</div>
-                <div class="badge badge-2">霧の呼吸</div>
-                <div class="badge badge-3">霞柱</div>
-                <div class="badge badge-4">常に集中</div>
             </div>
         </div>
     </section>
